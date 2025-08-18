@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 16:43:50 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/12 17:00:58 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/18 17:58:48 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,12 @@ int	main(int argc, char **argv, char **env)
 	data = init_data(env);
 	while (1)
 	{
-		input = readline("Entrez une commande : ");
+		input = readline("Minishell > ");
+		data = lexing(&data, input);
+		if (parsing(&data) == 0)
+			printf("parsing error\n");
+		if (ft_strlen(input) > 0)
+			add_history(input);
 		if (input != NULL && *input != '\0')
 		{
 			printf("Vous avez entré : %s\n", input);
@@ -62,7 +67,8 @@ int	main(int argc, char **argv, char **env)
 				return (1);
 			print_cmd_list(data->cmd_list);
 		}
-		pipe_or_not(data);
+		if (input != NULL && *input != '\0')
+			pipe_or_not(data);
 		if (!(input[0] == '\0'))
 			free_cmd_list(data->cmd_list);
 		free(input);
