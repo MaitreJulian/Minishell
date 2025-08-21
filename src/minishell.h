@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/12 17:04:21 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/20 19:46:27 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_cmd
 
 typedef struct s_data
 {
+	char *block;
+	int 		type;
 	t_token			*token_list;
 	t_cmd			*cmd_list;
 	char			**envc;
@@ -77,15 +79,31 @@ typedef struct s_data
 
 t_data	*lexing(char *line);
 
+
+//LEXING
+int	type_of_c(char c);
+int	c_sep(char c);
+int	is_quote(char c);
+int	ft_issep(int type);
+void	clean_block(t_data *line);
+void	fill_block(t_data **data, char *str, int type);
+void	expander(char **str, int type);
+
 //MAIN
 char	**copy_env(char **envp);
 t_cmd	*make_cmd_list(char *s, t_data *data);
+bool	red_heredoc(t_cmd **cmd_node, t_data *data, int i);
+bool	red_out(t_cmd **cmd_node, t_data *data, int i);;
+bool	red_append(t_cmd **cmd_node, t_data *data, int i);
+bool	red_in(t_cmd **cmd_node, t_data *data, int i);
+bool	redirection(t_cmd **cmd_node, int i, t_data *data);
 void	ft_redirection(t_cmd **cmd_node, t_data *data);
 
 //exec
 void	launch_builtin(t_data *data, t_cmd *cmd_list);
 void	ft_execve(char **cmd, char **envc);
 bool	is_builtin(char *cmd);
+bool	is_nofork_builtin(char *cmd);
 void	exec_pipeline(t_data *data);
 void	ft_exec_builtin(t_data *data, t_cmd *cmd_list);
 void	pipe_or_not(t_data *data);

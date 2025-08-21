@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 16:43:50 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/18 17:58:48 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:31:47 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		input = readline("Minishell > ");
-		data = lexing(&data, input);
-		if (parsing(&data) == 0)
-			printf("parsing error\n");
+		// data = lexing(&data, input);
+		// if (parsing(&data) == 0)
+		// 	printf("parsing error\n");
 		if (ft_strlen(input) > 0)
 			add_history(input);
 		if (input != NULL && *input != '\0')

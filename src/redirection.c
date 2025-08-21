@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 18:14:35 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/12 18:17:37 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/19 19:00:50 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,17 @@
 
 bool	redirection(t_cmd **cmd_node, int i, t_data *data)
 {
-
 	if (!strcmp((*cmd_node)->cmd[i], ">"))
-	{
-		(*cmd_node)->fd_out = open((*cmd_node)->cmd[i + 1], O_WRONLY
-				| O_CREAT | O_TRUNC, 0644);
-		return (true);
-	}
+		return (red_out(cmd_node, data, i));
 	else if ((!strcmp((*cmd_node)->cmd[i], ">>")))
-	{
-		(*cmd_node)->fd_out = open((*cmd_node)->cmd[i + 1], O_WRONLY
-				| O_CREAT | O_APPEND, 0644);
-		return (true);
-	}
+		return (red_append(cmd_node, data, i));
 	else if (!strcmp((*cmd_node)->cmd[i], "<"))
-	{
-		(*cmd_node)->fd_in = open((*cmd_node)->cmd[i + 1], O_RDONLY);
-		return (true);
-	}
+		return (red_in(cmd_node, data, i));
+	else if (!strcmp((*cmd_node)->cmd[i], "<<"))
+		return (red_heredoc(cmd_node, data, i));
 	if ((*cmd_node)->fd_in == -1 || (*cmd_node)->fd_out == -1)
 	{
-		printf("open failed");
+		perror("open failed");
 		ft_exit(data);
 	}
 	return (false);

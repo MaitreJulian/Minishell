@@ -6,13 +6,13 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:46:48 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/18 11:45:18 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/20 19:48:51 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	is_builtin(char *cmd)//Verifie si la comande est un builtin
+bool	is_builtin(char *cmd)
 {
 	if (!cmd)
 		return (false);
@@ -20,6 +20,16 @@ bool	is_builtin(char *cmd)//Verifie si la comande est un builtin
 		|| !ft_strcmp("pwd", cmd) || !ft_strcmp("export", cmd)
 		|| !ft_strcmp("unset", cmd) || !ft_strcmp("env", cmd)
 		|| !ft_strcmp("exit", cmd))
+		return (true);
+	return (false);
+}
+
+bool	is_nofork_builtin(char *cmd)
+{
+	if (!cmd)
+		return (false);
+	if (!ft_strcmp("cd", cmd) || !ft_strcmp("export", cmd)
+		|| !ft_strcmp("unset", cmd) || !ft_strcmp("exit", cmd))
 		return (true);
 	return (false);
 }

@@ -6,7 +6,7 @@
 #    By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 11:33:48 by jowoundi          #+#    #+#              #
-#    Updated: 2025/08/18 16:56:25 by jvenkata         ###   ########.fr        #
+#    Updated: 2025/08/20 18:40:03 by jvenkata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 # Source files
-SRCS = main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c \
+SRCS =	main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c \
 		builtins/ft_cd.c \
 		builtins/ft_echo.c \
 		builtins/ft_env.c \
@@ -38,8 +38,15 @@ SRCS = main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c \
 		builtins/ft_exit.c \
 		built_in.c \
 		copy_env.c \
-		exec_pipeline.c ft_exeve.c ft_exec_builtin.c \
-		pipeornot.c make_cmd_list.c free.c redirection.c utils.c
+		pipeline.c \
+		ft_exeve.c \
+		ft_exec_builtin.c \
+		pipeornot.c \
+		make_cmd_list.c \
+		free.c \
+		red_spec.c \
+		redirection.c \
+		utils.c
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
