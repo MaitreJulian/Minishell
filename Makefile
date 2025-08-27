@@ -6,7 +6,7 @@
 #    By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 11:33:48 by jowoundi          #+#    #+#              #
-#    Updated: 2025/08/27 15:14:00 by jvenkata         ###   ########.fr        #
+#    Updated: 2025/08/27 17:08:32 by jvenkata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 # Source files
-SRCS =	main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c \
+SRCS =	main.c\
 		builtins/ft_cd.c \
 		builtins/ft_echo.c \
 		builtins/ft_env.c \
