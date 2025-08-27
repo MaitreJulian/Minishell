@@ -6,11 +6,22 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:22:52 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/11 20:23:29 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:35:56 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+
+int	ft_varlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '=')
+		i++;
+	return (i);
+}
 
 int	len_tab(char **tb)
 {

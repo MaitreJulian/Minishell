@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 18:25:12 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/27 15:17:31 by jvenkata         ###   ########.fr       */
+/*   Created: 2025/08/27 13:33:20 by jvenkata          #+#    #+#             */
+/*   Updated: 2025/08/27 15:30:33 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-size_t	ft_strlen(const char *str)
+void	handler(int sig)
 {
-	size_t	x;
-
-	x = 0;
-	if (!str)
-		return (-1);
-	while (str[x] != '\0')
-		x++;
-	return (x);
+	if (sig == SIGINT)
+	{
+		write(STDOUT_FILENO, "\n", 1);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
 }

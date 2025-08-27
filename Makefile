@@ -6,7 +6,7 @@
 #    By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 11:33:48 by jowoundi          #+#    #+#              #
-#    Updated: 2025/08/20 18:40:03 by jvenkata         ###   ########.fr        #
+#    Updated: 2025/08/27 15:14:00 by jvenkata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ SRCS =	main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c \
 		free.c \
 		red_spec.c \
 		redirection.c \
-		utils.c
+		utils.c \
+		signals.c
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
