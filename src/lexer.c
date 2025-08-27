@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:48:34 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/07 15:56:41 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/08/26 18:59:54 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	for_quote(char *line, int type, int j)
 {
 	j++;
 	if (!line[j])
-		return (-1);
+		return (j);
 	while (line[j] && is_quote(line[j]) != type)
 		j++;
 	if ((size_t)j == ft_strlen(line) && is_quote(line[j - 1]) != type)
-		return (-1);
+		return (j);
 	j++;
 	return (j);
 }
@@ -41,8 +41,6 @@ int	size_str(char *line, int type, int i)
 				i = for_quote(line, is_quote(line[i]), i);
 			else
 				i++;
-			if (i == -1)
-				return (printf("syntax_error\n"), -1);
 		}
 	}
 	else
@@ -50,7 +48,7 @@ int	size_str(char *line, int type, int i)
 		while (line[i] && type == type_of_c(line[i]))
 			i++;
 	}
-	return(i);
+	return (i);
 }
 
 char	*copy_str(char *line, int i, int j)
@@ -77,20 +75,19 @@ void	print_list(t_data *list)
 
 t_data	*identifier(char *line)
 {
-	int	i;
-	int	j;
-	int	type;
+	int		i;
+	int		j;
+	int		type;
 	char	*str;
 	t_data	*identity;
 
 	identity = NULL;
+	str = NULL;
 	i = -1;
 	while (line[++i])
 	{
 		type = type_of_c(line[i]);
 		j = size_str(line, type, i);
-		if (j == -1)
-			break;
 		if (type == ESPACE)
 			str = ft_strdup(" ");
 		else
@@ -102,9 +99,6 @@ t_data	*identifier(char *line)
 		str = NULL;
 		i = j;
 	}
-	if (j == -1)
-		identity = NULL;
-	print_list(identity);
 	return (identity);
 }
 

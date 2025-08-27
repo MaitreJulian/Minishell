@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:54:44 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/20 18:34:13 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/26 19:08:30 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	type_of_c(char c)
 		return (RED_OUT);
 	else if (c == '<')
 		return (RED_IN);
-	else 
+	else
 		return (WORD);
 }
 

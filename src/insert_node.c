@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:53:24 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/07/11 16:37:35 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/08/26 18:58:50 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_data	*create_node(char *str, int type)
 {
 	t_data	*new_node;
-	
+
 	new_node = malloc(sizeof(t_data));
 	if (!new_node)
 		return (NULL);
