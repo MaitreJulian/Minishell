@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/28 18:42:17 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:51:24 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct s_data
 
 
 //LEXING
-t_data	*lexing(char *line);
+t_list	*lexing(char *line);
 int	type_of_c(char c);
 int	c_sep(char c);
 int	is_quote(char c);
@@ -85,6 +85,8 @@ int	ft_issep(int type);
 void	clean_block(t_data *line);
 void	fill_block(t_data **data, char *str, int type);
 void	expander(char **str, int type);
+int parsing(t_list *line);
+t_cmd	*fill_struct(t_list *luthor);
 
 
 //SIGNALS
