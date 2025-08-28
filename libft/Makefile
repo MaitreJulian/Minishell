@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+         #
+#    By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 13:22:33 by jowoundi          #+#    #+#              #
-#    Updated: 2025/08/18 16:37:04 by jvenkata         ###   ########.fr        #
+#    Updated: 2025/08/11 17:49:34 by jowoundi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c\
 	ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_split.c\
 	ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c get_next_line.c\
 	get_next_line_utils.c ft_number_printf.c ft_printf.c ft_putstr_printf.c\
-	ft_char_percent_printf.c ft_realloc.c ft_isspace.c ft_strcmp.c
+	ft_char_percent_printf.c ft_realloc.c ft_isspace.c
 
 OBJS =	$(SRC:.c=.o)
 

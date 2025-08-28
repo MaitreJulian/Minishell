@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/08/27 16:36:15 by jvenkata         ###   ########.fr       */
+=======
+/*   Updated: 2025/08/27 15:06:51 by jowoundi         ###   ########.fr       */
+>>>>>>> justin
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +25,25 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/ioctl.h>
-# include <sys/wait.h>
 # include <dirent.h>
 # include <string.h>
 # include <termios.h>
 # include <curses.h>
 # include <errno.h>
 # include <term.h>
+<<<<<<< HEAD
 # include <limits.h>
 # include <fcntl.h>
 # include <signal.h>
 
 # define PATH_MAX 4096
+=======
+
+enum	e_error_type
+{
+	SYNTAX,
+};
+>>>>>>> justin
 
 enum	e_token_type
 {
@@ -45,6 +56,7 @@ enum	e_token_type
 	HEREDOC, // <<
 	S_QUOTE, // '
 	D_QUOTE, // "
+<<<<<<< HEAD
 	AND, // &
 	PARENTH_L,	//	(
 	PARENTH_R, // )
@@ -59,24 +71,33 @@ typedef struct s_token
 	struct s_token *prev;
 }	t_token;
 
+=======
+	CMD,
+	ARG,
+};
+
+>>>>>>> justin
 typedef struct s_cmd
 {
 	char			**cmd;
-	int				n_cmd;
-	int				fd_in;
-	int				fd_out;
+	char			*token;
 	struct s_cmd	*next;
 }	t_cmd;
 
 typedef struct s_data
 {
+<<<<<<< HEAD
 	char *block;
 	int 		type;
 	t_token			*token_list;
 	t_cmd			*cmd_list;
 	char			**envc;
+=======
+	int				type;
+	char			*block;
+>>>>>>> justin
 	struct s_data	*next;
-}	t_data;
+}		t_data;
 
 
 //LEXING
@@ -88,6 +109,7 @@ int	ft_issep(int type);
 void	clean_block(t_data *line);
 void	fill_block(t_data **data, char *str, int type);
 void	expander(char **str, int type);
+<<<<<<< HEAD
 
 
 //SIGNALS
@@ -129,5 +151,9 @@ void	free_everything(t_data *data);
 //UTILS
 int		len_tab(char **tb);
 int		ft_varlen(char *str);
+=======
+t_cmd	*fill_struct(t_data *line);
+void	syntax_error_c(char c);
+>>>>>>> justin
 
 #endif

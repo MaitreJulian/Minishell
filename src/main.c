@@ -3,19 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2025/07/24 16:43:50 by jvenkata          #+#    #+#             */
 /*   Updated: 2025/08/27 16:21:27 by jvenkata         ###   ########.fr       */
+=======
+/*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
+/*   Updated: 2025/08/26 19:02:03 by jowoundi         ###   ########.fr       */
+>>>>>>> justin
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-void	print_cmd_list (t_cmd *cmd_list)
-{
-	t_cmd	*tmp;
-	int i = 0;
 
+int	main(int ac, char **av)
+{
+	char	*line;
+	t_data	*luthor;
+	t_cmd	*f_struct;
+
+<<<<<<< HEAD
 	tmp = cmd_list;
 	while (tmp)
 	{
@@ -81,6 +89,20 @@ int	main(int argc, char **argv, char **env)
 		if (!(input[0] == '\0'))
 			free_cmd_list(data->cmd_list);
 		free(input);
+=======
+	(void)av;
+	if (ac != 1)
+		return (1);
+	while (1)
+	{
+		line = readline("Minishell > ");
+		if (ft_strlen(line) > 0)
+			add_history(line);
+		luthor = lexing(line);
+		if (parsing(luthor) == 0)
+			continue ;
+		f_struct = fill_struct(luthor);
+>>>>>>> justin
 	}
 	return (0);
 }

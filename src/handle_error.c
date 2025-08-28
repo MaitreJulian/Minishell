@@ -1,17 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD:src/utils.c
 /*   Created: 2025/08/11 20:22:52 by jvenkata          #+#    #+#             */
 /*   Updated: 2025/08/27 16:35:56 by jvenkata         ###   ########.fr       */
+=======
+/*   Created: 2025/08/26 18:18:52 by jowoundi          #+#    #+#             */
+/*   Updated: 2025/08/27 15:02:21 by jowoundi         ###   ########.fr       */
+>>>>>>> justin:src/handle_error.c
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+<<<<<<< HEAD:src/utils.c
 
 int	ft_varlen(char *str)
 {
@@ -24,14 +30,9 @@ int	ft_varlen(char *str)
 }
 
 int	len_tab(char **tb)
+=======
+void	syntax_error_c(char c)
+>>>>>>> justin:src/handle_error.c
 {
-	int	i;
-
-	i = 0;
-	if (tb && tb[i])
-	{
-		while (tb[i])
-			i++;
-	}
-	return (i);
+		printf("minishell : syntax error near unexpected token `%c'\n", c);
 }
