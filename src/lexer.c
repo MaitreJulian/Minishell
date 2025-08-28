@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:48:34 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/26 18:59:54 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:33:36 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ char	*copy_str(char *line, int i, int j)
 	return (str);
 }
 
-void	print_list(t_data *list)
+void	print_list(t_list *list)
 {
-	t_data	*node;
+	t_list	*node;
 
 	node = list;
 	while (node != NULL)
@@ -73,13 +73,13 @@ void	print_list(t_data *list)
 	}
 }
 
-t_data	*identifier(char *line)
+t_list	*identifier(char *line)
 {
 	int		i;
 	int		j;
 	int		type;
 	char	*str;
-	t_data	*identity;
+	t_list	*identity;
 
 	identity = NULL;
 	str = NULL;
@@ -102,9 +102,9 @@ t_data	*identifier(char *line)
 	return (identity);
 }
 
-t_data	*lexing(char *line)
+t_list	*lexing(char *line)
 {
-	t_data	*new_line;
+	t_list	*new_line;
 
 	new_line = identifier(line);
 	clean_block(new_line);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_error.c                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/26 18:18:52 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/28 18:33:00 by jvenkata         ###   ########.fr       */
+/*   Created: 2025/08/11 20:22:52 by jvenkata          #+#    #+#             */
+/*   Updated: 2025/08/28 18:15:26 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,15 @@ int	ft_varlen(char *str)
 	return (i);
 }
 
-void	syntax_error_c(char c)
+int	len_tab(char **tb)
 {
-		printf("minishell : syntax error near unexpected token `%c'\n", c);
+	int	i;
+
+	i = 0;
+	if (tb && tb[i])
+	{
+		while (tb[i])
+			i++;
+	}
+	return (i);
 }

@@ -39,27 +39,29 @@ int	main(int ac, char **av)
 }
 
 
-t_data	*init_data(char **envp)
+t_data	*init_data(char **envp, t_cmd *f_struct)
 {
 	t_data	*data;
 
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (NULL);
-	data->cmd_list = NULL;
 	data->envc = copy_env(envp);
-	data->token_list = NULL;
+	data->cmd_list = f_struct;
 	return (data);
 }
 
-int	main(int argc, char **argv, char **env)
+int	main(int ac, char **argv, char **env)
 {
 	char	*input;
 	t_data	*data;
+	t_list	*luthor;
+	t_cmd	*f_struct;
 
-	(void)argc;
 	(void)argv;
-	data = init_data(env);
+	if (ac != 1)
+		return (1);
+	
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
@@ -76,33 +78,14 @@ int	main(int argc, char **argv, char **env)
 			printf("exit\n");
 			exit(0);
 		}
-		if (input != NULL && *input != '\0')
-		{
-			printf("Vous avez entré : %s\n", input);
-			data->cmd_list = make_cmd_list(input, data);
-			if (data->cmd_list == NULL)
-				return (1);
-			print_cmd_list(data->cmd_list);
-		}
-		if (input != NULL && *input != '\0')
-			pipe_or_not(data);
+		luthor = lexing(input);
+		if (parsing(luthor) == 0)
+				continue ;
+		f_struct = fill_struct(luthor);
+		data = init_data(env, f_struct);
+		pipe_or_not(data);
 		if (!(input[0] == '\0'))
 			free_cmd_list(data->cmd_list);
 		free(input);
-=======
-	(void)av;
-	if (ac != 1)
-		return (1);
-	while (1)
-	{
-		line = readline("Minishell > ");
-		if (ft_strlen(line) > 0)
-			add_history(line);
-		luthor = lexing(line);
-		if (parsing(luthor) == 0)
-			continue ;
-		f_struct = fill_struct(luthor);
->>>>>>> justin
 	}
-	return (0);
 }

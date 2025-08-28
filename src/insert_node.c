@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   insert_node.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:53:24 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/26 18:58:50 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:31:36 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_data	*create_node(char *str, int type)
+t_list	*create_node(char *str, int type)
 {
-	t_data	*new_node;
+	t_list	*new_node;
 
-	new_node = malloc(sizeof(t_data));
+	new_node = malloc(sizeof(t_list));
 	if (!new_node)
 		return (NULL);
 	new_node->block = ft_strdup(str);
@@ -25,10 +25,10 @@ t_data	*create_node(char *str, int type)
 	return (new_node);
 }
 
-void	fill_block(t_data **data, char *str, int type)
+void	fill_block(t_list **data, char *str, int type)
 {
-	t_data	*mew_node;
-	t_data	*temp;
+	t_list	*mew_node;
+	t_list	*temp;
 
 	mew_node = create_node(str, type);
 	if (!mew_node)
