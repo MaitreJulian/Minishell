@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_structure.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:01:33 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/28 18:31:46 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:37:12 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ void	fill_node(t_cmd **new_struct, char **str)
 	temp->next = new_node;
 }
 
-t_cmd	*fill_struct(t_list *line)
+t_cmd	*fill_struct(t_pars *line)
 {
 	t_cmd	*f_struct;
 	int		i;
 	char	**new_line;
 	int		count;
-	t_list	*temp;
+	t_pars	*temp;
 
 	f_struct = NULL;
 	while(line != NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 16:43:43 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/28 18:33:16 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:36:54 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	redir(char **str, int *type)
 	}
 }
 
-void	clean_block(t_list *line)
+void	clean_block(t_pars *line)
 {
-	t_list	*runner;
+	t_pars	*runner;
 
 	runner = line;
 	while (runner != NULL)

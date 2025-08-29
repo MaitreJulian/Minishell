@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/28 18:51:24 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:38:56 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }	t_cmd;
 
-typedef struct s_list
+typedef struct s_pars
 {
 	char	*block;
 	int 	type;
-	struct s_list	*next;
-}	t_list;
+	struct s_pars	*next;
+}	t_pars;
 
 
 typedef struct s_data
@@ -77,16 +77,17 @@ typedef struct s_data
 
 
 //LEXING
-t_list	*lexing(char *line);
+t_pars	*lexing(char *line);
 int	type_of_c(char c);
 int	c_sep(char c);
 int	is_quote(char c);
 int	ft_issep(int type);
-void	clean_block(t_data *line);
-void	fill_block(t_data **data, char *str, int type);
+void	clean_block(t_pars *line);
+void	fill_block(t_pars **data, char *str, int type);
 void	expander(char **str, int type);
-int parsing(t_list *line);
-t_cmd	*fill_struct(t_list *luthor);
+int parsing(t_pars *line);
+t_cmd	*fill_struct(t_pars *luthor);
+void	syntax_error_c(char c);
 
 
 //SIGNALS

@@ -6,15 +6,15 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:47:51 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/27 16:10:06 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:36:25 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	validate_line(t_data *line)
+int	validate_line(t_pars *line)
 {
-	t_data	*runner;
+	t_pars	*runner;
 
 	runner = line;
 	while (runner != NULL)
@@ -81,9 +81,9 @@ int	verif_quote(char *str)
 	return (1);
 }
 
-int	verif_some_shi(t_data *line)
+int	verif_some_shi(t_pars *line)
 {
-	t_data	*runner;
+	t_pars	*runner;
 
 	runner = line;
 	while (runner != NULL)
@@ -105,11 +105,11 @@ int	verif_some_shi(t_data *line)
 	return (1);
 }
 
-int	verif_word(t_data *line)
+int	verif_word(t_pars *line)
 {
 	int		i;
 	int		type;
-	t_data	*runner;
+	t_pars	*runner;
 
 	runner = line;
 	while (runner != NULL)
@@ -131,9 +131,9 @@ int	verif_word(t_data *line)
 	return (1);
 }
 
-void	delete_quote(t_data **line)
+void	delete_quote(t_pars **line)
 {
-	t_data	*runner;
+	t_pars	*runner;
 	char	*tmp;
 	int		i;
 	int		type;
@@ -174,7 +174,7 @@ void	delete_quote(t_data **line)
 	}
 }
 
-int	parsing(t_data *line)
+int	parsing(t_pars *line)
 {
 	if (verif_some_shi(line) == 0)
 		return (0);
