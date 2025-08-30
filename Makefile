@@ -3,31 +3,33 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+         #
+#    By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 11:33:48 by jowoundi          #+#    #+#              #
-#    Updated: 2025/08/29 15:14:02 by jowoundi         ###   ########.fr        #
+#    Updated: 2025/08/30 11:05:17 by jvenkata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-
 
 NAME = minishell
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
-GREEN   = "\\033[32m"
-YELLOW	= "\\033[33m"
-NC      = "\\033[0m"
 
+# Colors
+GREEN   = "\033[32m"
+YELLOW	= "\033[33m"
+NC      = "\033[0m"
+
+# Libft
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 INCLUDES = -I ./header -I $(LIBFT_DIR)
 
-SRC_DIR = src/
-OBJ_DIR = obj/
+# Dirs
+SRC_DIR = src
+OBJ_DIR = obj
 
-# Source files from the src directory
-SRCS = main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c fill_structure.c \
+# Source files (relative to SRC_DIR)
+SRCS =	main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c fill_structure.c \
 		handle_error.c \
 		builtins/ft_cd.c \
 		builtins/ft_echo.c \
@@ -49,36 +51,41 @@ SRCS = main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c f
 		utils.c \
 		signals.c
 
-OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
+# Expand with SRC_DIR prefix
+SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
+# Objects in OBJ_DIR
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+# Progress bar
 TOTAL_FILES := $(words $(SRCS))
 CURRENT_FILE := 0
-
 define progress_bar
 	@$(eval CURRENT_FILE=$(shell echo $$(($(CURRENT_FILE) + 1))))
-	@printf "\r$(YELLOW)Compiling michel... [%-$(TOTAL_FILES)s] %d/%d $(NC)" \
+	@printf "\r$(YELLOW)Compiling minishell... [%-$(TOTAL_FILES)s] %d/%d $(NC)" \
 	$$(for i in $$(seq 1 $(CURRENT_FILE)); do printf "#"; done) $(CURRENT_FILE) $(TOTAL_FILES)
 	@if [ $(CURRENT_FILE) -eq $(TOTAL_FILES)  ]; then echo ""; fi
 endef
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@mkdir -p $(OBJ_DIR)
+# Compilation rule
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	$(call progress_bar)
 
-
+# Logo
 LOGO = "\033[5;36m\
-Michel\n\
+Minishell\n\
 \033[0m"
 
-
-all:  $(NAME)
+# Main rules
+all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
 	@printf $(LOGO)
-	@echo "$(GREEN)Linking objects to create executable...$(NC)"
+	@echo $(GREEN)"Linking objects to create executable..."$(NC)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -lreadline -o $(NAME)
-	@echo "$(GREEN)Executable $(NAME) created!$(NC)"
+	@echo $(GREEN)"Executable $(NAME) created!"$(NC)
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR) -s
@@ -93,4 +100,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re

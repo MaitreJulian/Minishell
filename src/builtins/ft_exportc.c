@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:12:49 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/27 16:40:45 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/30 11:25:28 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	**realloc_envp(char **envp, int new_size)
 	return (new_envp);
 }
 
-bool	check_var(char *new_var)
+bool	checkvar(char *new_var)
 {
 	if (!new_var || !strchr(new_var, '='))
 	{
@@ -65,7 +65,7 @@ char	**ft_export(char **envc, char *new_v)
 	char	**new_envp;
 	int		len_name;
 
-	if (!check_var(new_v))
+	if (!checkvar(new_v))
 		return (envc);
 	i = -1;
 	len_name = ft_varlen(new_v);

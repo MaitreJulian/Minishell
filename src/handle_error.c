@@ -6,22 +6,11 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:18:52 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/28 18:33:00 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/30 11:26:22 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
-int	ft_varlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '=')
-		i++;
-	return (i);
-}
 
 void	syntax_error_c(char c)
 {

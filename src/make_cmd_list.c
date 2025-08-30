@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:35:48 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/12 17:03:44 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/30 12:52:17 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_cmd	*find_last(t_cmd *list)
 	return (node);
 }
 
-void	add_to_list(char *cmd_tab, t_cmd **cmd_list, t_data *data)
+void	add_to_list(char *cmd_tab, t_cmd **cmd_list)
 {
 	t_cmd	*cmd_node;
 	t_cmd	*last_cmd_node;
@@ -37,7 +37,7 @@ void	add_to_list(char *cmd_tab, t_cmd **cmd_list, t_data *data)
 		return ;
 	cmd_node->next = NULL;
 	cmd_node->cmd = ft_split(cmd_tab, ' ');
-	ft_redirection(&cmd_node, data);
+	ft_redirection(&cmd_node);
 	if (!(*cmd_list))
 		*cmd_list = cmd_node;
 	else
@@ -53,7 +53,7 @@ void	add_to_list(char *cmd_tab, t_cmd **cmd_list, t_data *data)
 	et le mettre dans le **cmd qui ser le data->cmd_list->cmd. 
 */
 
-t_cmd	*make_cmd_list(char *s, t_data *data)
+t_cmd	*make_cmd_list(char *s)
 {
 	char	**cmd_tab;
 	t_cmd	*cmd_list;
@@ -65,7 +65,7 @@ t_cmd	*make_cmd_list(char *s, t_data *data)
 	cmd_tab = ft_split(s, '|');
 	while (cmd_tab[i])
 	{
-		add_to_list(cmd_tab[i], &cmd_list, data);
+		add_to_list(cmd_tab[i], &cmd_list);
 		i++;
 	}
 	cmd_list->n_cmd = i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/29 14:38:56 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/08/30 12:52:48 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include <limits.h>
 # include <fcntl.h>
 # include <signal.h>
+# include <wait.h>
 
 # define PATH_MAX 4096
 
@@ -58,6 +59,9 @@ enum	e_token_type
 typedef struct s_cmd
 {
 	char			**cmd;
+	int				fd_in;
+	int				fd_out;
+	int				n_cmd;
 	struct s_cmd	*next;
 }	t_cmd;
 
@@ -95,13 +99,13 @@ void	handler(int sig);
 
 //MAIN
 char	**copy_env(char **envp);
-t_cmd	*make_cmd_list(char *s, t_data *data);
-bool	red_heredoc(t_cmd **cmd_node, t_data *data, int i);
-bool	red_out(t_cmd **cmd_node, t_data *data, int i);;
-bool	red_append(t_cmd **cmd_node, t_data *data, int i);
-bool	red_in(t_cmd **cmd_node, t_data *data, int i);
-bool	redirection(t_cmd **cmd_node, int i, t_data *data);
-void	ft_redirection(t_cmd **cmd_node, t_data *data);
+//t_cmd	*make_cmd_list(char *s, t_data *data);
+bool	red_heredoc(t_cmd **cmd_node, int i);
+bool	red_out(t_cmd **cmd_node, int i);;
+bool	red_append(t_cmd **cmd_node, int i);
+bool	red_in(t_cmd **cmd_node, int i);
+bool	redirection(t_cmd **cmd_node, int i);
+int		ft_redirection(t_cmd **cmd_node);
 
 //exec
 void	launch_builtin(t_data *data, t_cmd *cmd_list);

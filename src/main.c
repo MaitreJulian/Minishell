@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/29 14:34:57 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/08/30 15:41:04 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,11 @@ int	main(int ac, char **argv, char **env)
 	(void)argv;
 	if (ac != 1)
 		return (1);
-	
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		input = readline("Minishell > ");
-		// data = lexing(&data, input);
-		// if (parsing(&data) == 0)
-		// 	printf("parsing error\n");
 		if (ft_strlen(input) > 0)
 			add_history(input);
 		if (!input)
@@ -51,9 +47,14 @@ int	main(int ac, char **argv, char **env)
 			printf("exit\n");
 			exit(0);
 		}
+		if (input[0] == '\0')
+		{
+			free(input);
+			continue ;
+		}
 		luthor = lexing(input);
 		if (parsing(luthor) == 0)
-				continue ;
+			continue ;
 		f_struct = fill_struct(luthor);
 		data = init_data(env, f_struct);
 		pipe_or_not(data);

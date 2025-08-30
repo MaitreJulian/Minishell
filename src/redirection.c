@@ -6,27 +6,22 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 18:14:35 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/19 19:00:50 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/30 13:31:10 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	redirection(t_cmd **cmd_node, int i, t_data *data)
+bool	redirection(t_cmd **cmd_node, int i)
 {
 	if (!strcmp((*cmd_node)->cmd[i], ">"))
-		return (red_out(cmd_node, data, i));
+		return (red_out(cmd_node, i));
 	else if ((!strcmp((*cmd_node)->cmd[i], ">>")))
-		return (red_append(cmd_node, data, i));
+		return (red_append(cmd_node, i));
 	else if (!strcmp((*cmd_node)->cmd[i], "<"))
-		return (red_in(cmd_node, data, i));
+		return (red_in(cmd_node, i));
 	else if (!strcmp((*cmd_node)->cmd[i], "<<"))
-		return (red_heredoc(cmd_node, data, i));
-	if ((*cmd_node)->fd_in == -1 || (*cmd_node)->fd_out == -1)
-	{
-		perror("open failed");
-		ft_exit(data);
-	}
+		return (red_heredoc(cmd_node, i));
 	return (false);
 }
 
@@ -38,15 +33,16 @@ bool	ft_red(t_cmd *cmd_node)
 	while (cmd_node->cmd[i])
 	{
 		if (!strcmp(cmd_node->cmd[i], ">")
-			|| (!strcmp(cmd_node->cmd[i], ">>"))
-			|| !strcmp(cmd_node->cmd[i], "<"))
+			|| !strcmp(cmd_node->cmd[i], ">>")
+			|| !strcmp(cmd_node->cmd[i], "<")
+			|| !strcmp(cmd_node->cmd[i], "<<"))
 			return (true);
 		i++;
 	}
 	return (false);
 }
 
-void	ft_redirection(t_cmd **cmd_node, t_data *data)
+int	ft_redirection(t_cmd **cmd_node)
 {
 	char	**new_cmd;
 	int		i;
@@ -57,16 +53,19 @@ void	ft_redirection(t_cmd **cmd_node, t_data *data)
 	(*cmd_node)->fd_in = 0;
 	(*cmd_node)->fd_out = 1;
 	if (!ft_red(*cmd_node))
-		return ;
+		return (0);
 	new_cmd = malloc(sizeof(char *) * (len_tab((*cmd_node)->cmd) - 1));
 	while ((*cmd_node)->cmd[i])
 	{
-		if (redirection(cmd_node, i, data))
+		if (redirection(cmd_node, i))
 			i += 2;
+		else if ((*cmd_node)->fd_in == -1 || (*cmd_node)->fd_out == -1)
+			return (1);
 		else
 			new_cmd[j++] = ft_strdup((*cmd_node)->cmd[i++]);
 	}
 	new_cmd[j] = NULL;
 	free_tab((*cmd_node)->cmd);
 	(*cmd_node)->cmd = new_cmd;
+	return (0);
 }
