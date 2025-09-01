@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:46:48 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/20 19:48:51 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/31 22:15:31 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	do_builtin(t_data *data, t_cmd *cmd_list)
 	else if (!ft_strcmp("pwd", cmd_list->cmd[0]))
 		ft_pwd(data->envc);
 	else if (!ft_strcmp("export", cmd_list->cmd[0]))
-		ok = ft_export(data->envc, cmd_list->cmd[1]);
+		data->envc = ft_export(data->envc, cmd_list->cmd[1]);
 	else if (!ft_strcmp("unset", cmd_list->cmd[0]))
 		ok = ft_unset(data->envc, cmd_list->cmd[1]);
 	else if (!ft_strcmp("env", cmd_list->cmd[0]))

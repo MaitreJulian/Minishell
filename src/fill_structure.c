@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:01:33 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/30 12:53:59 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/31 21:20:39 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,5 @@ t_cmd	*fill_struct(t_pars *line)
 		}
 		free(new_line);
 	}
-	new_print(f_struct);
-	return(f_struct);
+	return (f_struct);
 }

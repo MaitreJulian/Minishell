@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:12:49 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/30 11:25:28 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/08/31 21:50:33 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ char	**realloc_envp(char **envp, int new_size)
 bool	checkvar(char *new_var)
 {
 	if (!new_var || !strchr(new_var, '='))
-	{
-		printf("export: new_variable invalid: %s\n", new_var);
 		return (false);
-	}
 	return (true);
 }
 
