@@ -6,21 +6,20 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/30 15:41:04 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/01 17:46:18 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_data	*init_data(char **envp, t_cmd *f_struct)
+t_data	*init_data(char **env)
 {
 	t_data	*data;
 
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (NULL);
-	data->envc = copy_env(envp);
-	data->cmd_list = f_struct;
+	data->envc = copy_env(env);
 	return (data);
 }
 
@@ -36,6 +35,7 @@ int	main(int ac, char **argv, char **env)
 		return (1);
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
+	data = init_data(env);
 	while (1)
 	{
 		input = readline("Minishell > ");
@@ -56,7 +56,7 @@ int	main(int ac, char **argv, char **env)
 		if (parsing(luthor) == 0)
 			continue ;
 		f_struct = fill_struct(luthor);
-		data = init_data(env, f_struct);
+		data->cmd_list = f_struct;
 		pipe_or_not(data);
 		if (!(input[0] == '\0'))
 			free_cmd_list(data->cmd_list);

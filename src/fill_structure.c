@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:01:33 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/31 21:20:39 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/01 16:53:39 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,14 @@ t_cmd	*fill_struct(t_pars *line)
 {
 	t_cmd	*f_struct;
 	int		i;
-	int 	j; 
+	int 	j;
+	int		nb_cmd;
 	char	**new_line;
 	int		count;
 	t_pars	*temp;
 
 	f_struct = NULL;
+	nb_cmd = 0;
 	while(line != NULL)
 	{
 		if (line->type == PIPE)
@@ -123,6 +125,8 @@ t_cmd	*fill_struct(t_pars *line)
 			j++;
 		}
 		free(new_line);
+		nb_cmd++;
 	}
+	f_struct->n_cmd = nb_cmd;
 	return (f_struct);
 }
