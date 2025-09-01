@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/jowoundi/minishell/Minishell/src",
-      "program": "/home/jowoundi/minishell/Minishell/src/build/Debug/outDebug",
+      "cwd": "/home/jowoundi/minishell/merge/Minishell/src",
+      "program": "/home/jowoundi/minishell/merge/Minishell/minishell",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
