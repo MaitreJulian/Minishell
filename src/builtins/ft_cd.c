@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 10:06:22 by julian            #+#    #+#             */
-/*   Updated: 2025/08/10 16:51:47 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:50:16 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	update_oldpwd(t_data *data)
 		test = ft_strjoin("OLD", test);//et on rajout OLD devant
 		if (!test)
 			return ;
-		ft_export(data->envc, test);//pour l'export après
+		ft_export(data->envc, &test);//pour l'export après
 	}
 	free(test);
 }
@@ -54,7 +54,7 @@ static void	update_pwd(t_data *data, char *new_pwd)
 	pwd = ft_strjoin("PWD=", cwd);
 	if (!pwd)
 		return;//strjoin n'a pas fonctionné
-	ft_export(data->envc, pwd);//le nouveau PWD est envyé dans l'env
+	ft_export(data->envc, &pwd);//le nouveau PWD est envyé dans l'env
 	free(pwd);
 }   
 

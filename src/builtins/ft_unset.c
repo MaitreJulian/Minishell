@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:18:00 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/07/11 12:37:49 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/02 14:51:23 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,46 @@ int	in_env(char **envc, char *v_env_del, int len)
 	return (0);
 }
 
-char	**ft_unset(char **envc, char *v_env_del)//la copie d'environnement et variable à enlever
+char	**unset_env(char **envc, char *v_env_del, int len)
 {
-	int		i;
 	char	**new_env;
+	int		i;
 	int		j;
-	int		len;
 
-	len = ft_strlen(v_env_del);
 	i = 0;
 	j = 0;
-
-	if (!in_env(envc, v_env_del, len))
-		return (envc);//Pas de variable existante
-	new_env = malloc(sizeof(char *) * (i + 1));
-	if (!new_env)
-		return (NULL);
-	i = 0;
+	new_env = malloc(sizeof(char *) * len_env(envc));
 	while (envc[i])
 	{
 		if (strncmp(envc[i], v_env_del, len) == 0 && envc[i][len] == '=')
-			i++;// on saute celle qu'on veut supprimer
+			i++;
 		else
-			new_env[j++] = strdup(envc[i]);
+			new_env[j++] = strdup(envc[i++]);
 	}
-	new_env[j] = NULL;// Terminer le tableau
+	free_tab(envc);
+	new_env[j] = NULL;
+	return (new_env);
+}
+
+char	**ft_unset(char **envc, char **v_env_del)
+{
+	char	**new_env;
+	int		len;
+
+	new_env = copy_env(envc);
+	free_tab(envc);
+	while (*v_env_del)
+	{
+		len = ft_strlen(*v_env_del);
+		if (!in_env(new_env, *v_env_del, len))
+			return (new_env);
+		new_env = unset_env(new_env, *v_env_del, len);
+		if (!new_env)
+		{
+			perror("Unset failed :");
+			return (new_env);
+		}
+		v_env_del++;
+	}
 	return (new_env);
 }

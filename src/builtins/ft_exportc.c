@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:12:49 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/02 12:28:11 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/02 15:05:00 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,11 @@ char	**ft_export(char **envc, char **new_v)
 	char	**nenv;
 	int		len;
 
+	if (!(*new_v))
+	{
+		print_env(envc);
+		return (envc);
+	}
 	nenv = copy_env(envc);
 	free_tab(envc);
 	while (*new_v)
