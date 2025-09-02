@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/02 12:21:45 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/02 18:37:34 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int		ft_cd(t_data *data, char *new_pwd);
 void	ft_echo(char **args);
 void	ft_env(char **env);
 void	ft_pwd(char **env);
-char	**ft_unset(char **envc, char *v_env_del);
+char	**ft_unset(char **envc, char **v_env_del);
 void	ft_exit(t_data *data);
 
 //FREE
@@ -133,5 +133,6 @@ void	free_everything(t_data *data);
 //UTILS
 int		len_tab(char **tb);
 int		ft_varlen(char *str);
+void	print_env(char **envp);
 
 #endif
