@@ -6,19 +6,18 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:22:52 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/02 10:27:30 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:15:58 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 int	ft_varlen(char *str)
 {
 	int	i;
 
 	i = 0;
-	if (str[i] != '=' && str[i])
+	while (str[i] != '=' && str[i])
 		i++;
 	if (str[i] == '\0')
 		return (0);
@@ -36,6 +35,18 @@ int	len_tab(char **tb)
 			i++;
 	}
 	return (i);
+}
+
+void	print_env(char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		printf("declare -x %s\n", envp[i]);
+		i++;
+	}
 }
 
 void	print_list(t_pars *list)

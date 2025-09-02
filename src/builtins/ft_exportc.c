@@ -6,23 +6,11 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:12:49 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/01 18:34:00 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/02 12:28:11 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	print_env(char **envp)
-{
-	int	i;
-
-	i = 0;
-	while (envp[i])
-	{
-		printf("declare -x %s\n", envp[i]);
-		i++;
-	}
-}
 
 int	is_valid_identifier(const char *str)
 {
@@ -43,7 +31,7 @@ int	is_valid_identifier(const char *str)
 	return (1);
 }
 
-char	**realloc_envp(char **envp, int new_size)
+char	**realloc_envp(char **envp, int new_size)//on realloue l'env avec 1 place en plus
 {
 	char	**new_envp;
 	int		i;
@@ -54,7 +42,7 @@ char	**realloc_envp(char **envp, int new_size)
 	i = 0;
 	while (envp[i])
 	{
-		new_envp[i] = strdup(envp[i]);
+		new_envp[i] = ft_strdup(envp[i]);
 		if (!new_envp[i])
 		{
 			while (--i >= 0)
@@ -68,31 +56,52 @@ char	**realloc_envp(char **envp, int new_size)
 	return (new_envp);
 }
 
-char	**ft_export(char **envc, char *new_v)
+char	**new_env(char **nenv, char *new_v, int len)
 {
 	int		i;
-	char	**new_envp;
-	int		len_name;
+	char	*temp;
 
-	if (!is_valid_identifier(new_v))
-		return (printf("export: '%s': not a valid identifier\n", new_v), envc);
 	i = -1;
-	len_name = ft_varlen(new_v);
-	if (!len_name)
-		return (envc);
-	while (envc[++i])
+	while (nenv[++i])
 	{
-		if (strncmp(envc[i], new_v, len_name) == 0 && envc[i][len_name] == '=')// La variable existe, on la remplace
+		if (strncmp(nenv[i], new_v, len) == 0 && nenv[i][len] == '=')//la variable existe deja on la remplace
 		{
-			free(envc[i]);
-			envc[i] = strdup(new_v);
-			return (envc);
+			temp = ft_strdup(new_v);
+			free(nenv[i]);
+			nenv[i] = temp;
+			return (nenv);
 		}
 	}
-	new_envp = realloc_envp(envc, i + 1);// La variable n'existe pas encore, on l'ajoute
-	if (!new_envp)
-		return (envc);
-	new_envp[i] = strdup(new_v);
-	new_envp[i + 1] = NULL;
-	return (new_envp);
+	nenv = realloc_envp(nenv, i + 1);
+	if (!nenv)
+	{
+		perror("Malloc in export failed:\n");
+		return (nenv);
+	}
+	nenv[i] = ft_strdup(new_v);
+	nenv[i + 1] = NULL;
+	return (nenv);
+}
+
+char	**ft_export(char **envc, char **new_v)
+{
+	char	**nenv;
+	int		len;
+
+	nenv = copy_env(envc);
+	free_tab(envc);
+	while (*new_v)
+	{
+		if (!is_valid_identifier(*new_v))
+		{
+			printf("export: '%s not a valid identifier\n", *new_v);
+			return (nenv);
+		}
+		len = ft_varlen(*new_v);
+		if (!len)
+			return (nenv);
+		nenv = new_env(nenv, *new_v, len);
+		new_v++;
+	}
+	return (nenv);
 }
