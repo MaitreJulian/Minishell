@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 21:56:28 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/07/10 11:20:55 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/01 18:40:52 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,14 @@ void	ft_env(char **env)
 	i = 0;
 	while (env[i])
 	{
-		printf("%s", env[i]);
-		printf("\n");
-		i++;
+		if (!ft_strchr(env[i], '='))
+			i++;
+		else
+		{
+			printf("%s", env[i]);
+			printf("\n");
+			i++;
+		}
 	}
 }
 /*

@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:12:49 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/31 21:50:33 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/01 18:34:00 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,25 @@ void	print_env(char **envp)
 		printf("declare -x %s\n", envp[i]);
 		i++;
 	}
+}
+
+int	is_valid_identifier(const char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str || !str[0])
+		return (0);
+	if (!(ft_isalpha(str[0]) || str[0] == '_'))
+		return (0);
+	i = 1;
+	while (str[i] && str[i] != '=')
+	{
+		if (!(ft_isalnum(str[i]) || str[i] == '_'))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 char	**realloc_envp(char **envp, int new_size)
@@ -49,23 +68,18 @@ char	**realloc_envp(char **envp, int new_size)
 	return (new_envp);
 }
 
-bool	checkvar(char *new_var)
-{
-	if (!new_var || !strchr(new_var, '='))
-		return (false);
-	return (true);
-}
-
 char	**ft_export(char **envc, char *new_v)
 {
 	int		i;
 	char	**new_envp;
 	int		len_name;
 
-	if (!checkvar(new_v))
-		return (envc);
+	if (!is_valid_identifier(new_v))
+		return (printf("export: '%s': not a valid identifier\n", new_v), envc);
 	i = -1;
 	len_name = ft_varlen(new_v);
+	if (!len_name)
+		return (envc);
 	while (envc[++i])
 	{
 		if (strncmp(envc[i], new_v, len_name) == 0 && envc[i][len_name] == '=')// La variable existe, on la remplace
