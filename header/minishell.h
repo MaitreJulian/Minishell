@@ -6,12 +6,14 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/02 18:37:34 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/02 19:09:21 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
+#define _POSIX_C_SOURCE 200809L
 
 # include "../libft/libft.h"
 # include <stdio.h>
@@ -96,6 +98,7 @@ void	syntax_error_c(char c);
 
 //SIGNALS
 void	handler(int sig);
+void setup_signals(void);
 
 //MAIN
 char	**copy_env(char **envp);
