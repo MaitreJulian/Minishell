@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/02 10:10:56 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/02 10:27:44 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,6 @@ void	free_everything(t_data *data);
 
 //UTILS
 int		len_tab(char **tb);
+int		ft_varlen(char *str);
 
 #endif

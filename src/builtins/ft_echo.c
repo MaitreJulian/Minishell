@@ -6,19 +6,21 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:35:14 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/07/10 11:20:30 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/02 10:27:00 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// #include "minishell.h"
 
 #include "minishell.h"
 
 void	ft_echo(char **args)
 {
 	int		i;
-	bool	backsn;//Pour voir si on retoure a la ligne
+	bool	backsn;
 
 	backsn = true;
-	i = 1;//1 psk on ne veut pas "echo"
+	i = 1;
 	if (strncmp(args[i], "-n", 3) == 0)//Je verifie que si il y a le flag -n
 	{
 		backsn = false;
@@ -26,19 +28,22 @@ void	ft_echo(char **args)
 	}
 	while (args[i] != NULL)
 	{
-		printf("%s", args[i]);
+		write(1, args[i], strlen(args[i]));
 		if (args[i + 1])
-			printf(" ");
+			write(1, " ", 1);
 		i++;
 	}
 	if (backsn)
 		printf("\n");
 }
-/*
-int main()
-{
-	char *args[] = {"echo", "-n", "hello", "world", NULL};
-	ft_echo(args);
-	return 0;
-}
-*/
+
+// int main()
+// {
+// 	char *args[] = {"echo", "hello", "world", NULL};
+// 	char *argds[] = {"echo", "-n", "fils de", "pute", NULL};
+// 	ft_echo(args);
+// 	ft_echo(argds);
+	
+// 	return 0;
+// }
+

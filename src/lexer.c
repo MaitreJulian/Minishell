@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:48:34 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/29 14:35:53 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/02 10:13:56 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,6 @@ char	*copy_str(char *line, int i, int j)
 	while (i < j)
 		str = ft_realloc(str, line[i++]);
 	return (str);
-}
-
-void	print_list(t_pars *list)
-{
-	t_pars	*node;
-
-	node = list;
-	while (node != NULL)
-	{
-		printf("TYPE : [%d], STR :[%s]\n", node->type, node->block);
-		node = node->next;
-	}
 }
 
 t_pars	*identifier(char *line)

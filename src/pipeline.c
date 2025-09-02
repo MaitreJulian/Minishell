@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_pipeline.c                                    :+:      :+:    :+:   */
+/*   pipeline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:39:02 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/18 13:07:14 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/02 10:22:00 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	do_child(t_data *data, t_cmd *cmd, int *pfd)
 	if (pfd[1] != -1)
 		close(pfd[1]);
 	ft_exec_builtin(data, cmd);
-	_exit(1);
+	exit(0);
 }
 
 void	do_parent(t_cmd *cmd, int *pfd)

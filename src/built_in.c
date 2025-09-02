@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:46:48 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/01 16:46:31 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/02 10:32:32 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,8 @@ bool	do_builtin(t_data *data, t_cmd *cmd_list)
 
 void	launch_builtin(t_data *data, t_cmd *cmd_list)
 {
-	// printf("Dans launch\n");
 	if (!do_builtin(data, cmd_list))
 	{
-		printf("NOPE SALOPE");
+		printf("builtin failed\n");
 	}
 }
