@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:34:02 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/11 18:58:07 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:00:12 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	free_cmd_list(t_cmd *cmd_list)
 void	free_everything(t_data *data)
 {
 	free_cmd_list(data->cmd_list);
+	free_tab(data->envc);
 	free(data);
 	return ;
 }

@@ -6,39 +6,48 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 10:06:22 by julian            #+#    #+#             */
-/*   Updated: 2025/09/03 13:40:09 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:34:41 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	update_oldpwd(t_data *data)
+void	update_old(t_data *data, char **old_var_env, int i)
 {
 	char	**tmp;
-	char	**test;
-	int		i;
+	char	*temp;
 
-	i = 0;
 	tmp = data->envc;
-	test = malloc(sizeof(char *) * 2);
 	while (tmp[i])
 	{
 		if (ft_strncmp(tmp[i], "PWD=", 3) == 0)//On trouve le PWD actuel 
 		{
-			test[0] = ft_strdup(tmp[i]);
+			old_var_env[0] = ft_strdup(tmp[i]);
 			break ;
 		}
 		i++;
 	}
-	if (test[0])
+	if (old_var_env[0])
 	{
-		test[0]=ft_strjoin("OLD", test[0]);//et on rajout OLD devant
-		if (!test[0])
+		temp=ft_strjoin("OLD", old_var_env[0]);//et on rajout OLD devant
+		free(old_var_env[0]);
+		old_var_env[0] = temp;
+		if (!old_var_env[0])
 			return ;
-		test[1] = NULL;
-		data->envc = ft_export(data->envc, test);//pour l'export après
+		old_var_env[1] = NULL;
+		data->envc = ft_export(data->envc, old_var_env);//pour l'export après
 	}
-	free_tab(test);
+}
+
+static void	update_oldpwd(t_data *data)
+{
+	char	**old_var_env;
+	int		i;
+
+	i = 0;
+	old_var_env = malloc(sizeof(char *) * 2);
+	update_old(data, old_var_env, i);
+	free_tab(old_var_env);
 }
 
 static void	update_pwd(t_data *data, char *new_pwd)
