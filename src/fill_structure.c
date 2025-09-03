@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:01:33 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/01 16:53:39 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:09:20 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,10 @@ t_cmd	*fill_struct(t_pars *line)
 		while (line && line->type != PIPE)
 		{
 			new_line[i++] = ft_strdup(line->block);
-			line = line->next;
+			temp = line->next;
+			free(line->block);
+			free(line);
+			line = temp;
 		}
 		new_line[i] = NULL;
 		fill_node(&f_struct, new_line);
