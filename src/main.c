@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/01 17:46:18 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:02:45 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,19 @@ int	main(int ac, char **argv, char **env)
 	(void)argv;
 	if (ac != 1)
 		return (1);
-	signal(SIGINT, handler);
-	signal(SIGQUIT, SIG_IGN);
+	setup_signals();
 	data = init_data(env);
 	while (1)
 	{
 		input = readline("Minishell > ");
-		if (ft_strlen(input) > 0)
-			add_history(input);
 		if (!input)
 		{
 			rl_clear_history();
 			printf("exit\n");
 			exit(0);
 		}
+		if (ft_strlen(input) > 0)
+			add_history(input);
 		if (input[0] == '\0')
 		{
 			free(input);

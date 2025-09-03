@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:39:02 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/02 10:22:00 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:32:01 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,31 @@ void	do_parent(t_cmd *cmd, int *pfd)
 		close(cmd->fd_out);
 }
 
+void	wait_sig_pid(void)
+{
+	int		status;
+	int		sig;
+	pid_t	wpid;
+
+	while (1)
+	{
+		wpid = waitpid(-1, &status, 0);
+		if (wpid == -1)
+			break ;
+		if (WIFSIGNALED(status))
+		{
+			sig = WTERMSIG(status);
+			if (sig == SIGQUIT)
+				write(STDOUT_FILENO, "Quit (core dumped)\n", 19);
+			else if (sig == SIGINT)
+			{
+				write(STDOUT_FILENO, "\n", 1);
+			}
+		}
+	}
+	setup_signals();
+}
+
 void	exec_pipeline(t_data *data)
 {
 	t_cmd	*current;
@@ -65,6 +90,8 @@ void	exec_pipeline(t_data *data)
 	pid_t	pid;
 
 	current = data->cmd_list;
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	while (current)
 	{
 		if (current->next)
@@ -81,5 +108,5 @@ void	exec_pipeline(t_data *data)
 			do_parent(current, pfd);
 		current = current->next;
 	}
-	while (wait(NULL) > 0);
+	wait_sig_pid();
 }

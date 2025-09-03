@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exeve.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:53:35 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/02 18:40:20 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/03 10:52:11 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	ft_execve(char **cmd, char **env)
 	char	*path;
 
 	path = get_path(cmd[0], env);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	if (execve(path, cmd, env) == -1)
 	{
 		perror("execve failed");
