@@ -6,7 +6,7 @@
 #    By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 11:33:48 by jowoundi          #+#    #+#              #
-#    Updated: 2025/08/30 11:05:17 by jvenkata         ###   ########.fr        #
+#    Updated: 2025/09/03 15:36:33 by jvenkata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,9 +83,9 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
 	@printf $(LOGO)
-	@echo $(GREEN)"Linking objects to create executable..."$(NC)
+	@echo -e $(GREEN)"Linking objects to create executable..."$(NC)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -lreadline -o $(NAME)
-	@echo $(GREEN)"Executable $(NAME) created!"$(NC)
+	@echo -e $(GREEN)"Executable $(NAME) created!"$(NC)
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR) -s
