@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:53:35 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/03 10:52:11 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/03 18:01:09 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,19 @@ char	*get_path(char *cmd, char **env)
 	char	*exec;
 	char	*path_part;
 	char	**allpath;
-	char	**s_cmd;
 
 	i = -1;
 	allpath = ft_split(my_getenv("PATH", env), ':');
-	s_cmd = ft_split(cmd, ' ');
 	while (allpath[++i])
 	{
 		path_part = ft_strjoin(allpath[i], "/");
-		exec = ft_strjoin(path_part, s_cmd[0]);
+		exec = ft_strjoin(path_part, cmd);
 		free(path_part);
 		if (access(exec, F_OK | X_OK) == 0)
-		{
-			ft_free_tab(s_cmd);
 			return (exec);
-		}
 		free(exec);
 	}
 	ft_free_tab(allpath);
-	ft_free_tab(s_cmd);
 	return (cmd);
 }
 

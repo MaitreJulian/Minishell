@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+         #
+#    By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 11:33:48 by jowoundi          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2025/09/03 15:36:33 by jvenkata         ###   ########.fr        #
-=======
-#    Updated: 2025/09/03 15:31:16 by jowoundi         ###   ########.fr        #
->>>>>>> c9ea8cc83c63353685b09c9f91844d624dd07cb3
+#    Updated: 2025/09/03 17:39:11 by jvenkata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,15 +75,13 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(call progress_bar)
 
 # Logo
-LOGO = "\033[5;36m\
-Minishell\n\
-\033[0m"
+LOGO = "\033[5;36mMinishell\033[0m"
 
 # Main rules
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	@printf $(LOGO)
+	@echo -e $(LOGO)
 	@echo -e $(GREEN)"Linking objects to create executable..."$(NC)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -lreadline -o $(NAME)
 	@echo -e $(GREEN)"Executable $(NAME) created!"$(NC)

@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:18:00 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/02 14:51:23 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/03 18:09:48 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	**unset_env(char **envc, char *v_env_del, int len)
 	char	**new_env;
 	int		i;
 	int		j;
+	char	temp;
 
 	i = 0;
 	j = 0;
@@ -50,7 +51,12 @@ char	**unset_env(char **envc, char *v_env_del, int len)
 		if (strncmp(envc[i], v_env_del, len) == 0 && envc[i][len] == '=')
 			i++;
 		else
-			new_env[j++] = strdup(envc[i++]);
+		{
+			temp = ft_strdup(v_env_del);
+			free(new_env[i]);
+			new_env[i] = temp;
+			return (new_env);
+		}
 	}
 	free_tab(envc);
 	new_env[j] = NULL;
@@ -59,23 +65,21 @@ char	**unset_env(char **envc, char *v_env_del, int len)
 
 char	**ft_unset(char **envc, char **v_env_del)
 {
-	char	**new_env;
 	int		len;
 
-	new_env = copy_env(envc);
 	free_tab(envc);
 	while (*v_env_del)
 	{
 		len = ft_strlen(*v_env_del);
-		if (!in_env(new_env, *v_env_del, len))
-			return (new_env);
-		new_env = unset_env(new_env, *v_env_del, len);
-		if (!new_env)
+		if (!in_env(envc, *v_env_del, len))
+			return (envc);
+		envc = unset_env(envc, *v_env_del, len);
+		if (!envc)
 		{
 			perror("Unset failed :");
-			return (new_env);
+			return (envc);
 		}
 		v_env_del++;
 	}
-	return (new_env);
+	return (envc);
 }
