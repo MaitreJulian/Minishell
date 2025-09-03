@@ -6,13 +6,13 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:49:17 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/01 18:02:03 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:30:31 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*check_var(char *str, int i)
+char	*check_var(char *str, int i, t_data *data)
 {
 	char	*var;
 	char	*value;
@@ -25,12 +25,12 @@ char	*check_var(char *str, int i)
 		var = ft_realloc(var, str[i++]);
 	if (var == NULL)
 		return (ft_strdup("$"));
-	if (getenv(var) != NULL)
-		value = ft_strdup(getenv(var));
+	if (ft_getenv(var, data->envc) != NULL)
+		value = ft_strdup(ft_getenv(var, data->envc));
 	return (value);
 }
 
-void	expander(char **str, int type)
+void	expander(char **str, int type, t_data *data)
 {
 	char	*var;
 	char	*new_line;
@@ -61,7 +61,7 @@ void	expander(char **str, int type)
 				{
 					if ((*str)[i] && (*str)[i] == '$')
 					{
-						var = check_var(*str, i);
+						var = check_var(*str, i, data);
 						if (!var)
 							var = ft_strdup("");
 						new_line = ft_strjoin(new_line, var);
@@ -82,7 +82,7 @@ void	expander(char **str, int type)
 			{
 				if ((*str)[i] && (*str)[i] == '$')
 				{
-					var = check_var(*str, i);
+					var = check_var(*str, i, data);
 					if (!var)
 						var = ft_strdup("");
 					new_line = ft_strjoin(new_line, var);

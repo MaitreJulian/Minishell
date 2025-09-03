@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:48:34 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/02 10:13:56 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:29:54 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,11 @@ t_pars	*identifier(char *line)
 	return (identity);
 }
 
-t_pars	*lexing(char *line)
+t_pars	*lexing(char *line, t_data *data)
 {
 	t_pars	*new_line;
 
 	new_line = identifier(line);
-	clean_block(new_line);
+	clean_block(new_line, data);
 	return (new_line);
 }

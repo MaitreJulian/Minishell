@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 16:43:43 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/29 14:36:54 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:28:28 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	redir(char **str, int *type)
 	}
 }
 
-void	clean_block(t_pars *line)
+void	clean_block(t_pars *line, t_data *data)
 {
 	t_pars	*runner;
 
@@ -35,7 +35,7 @@ void	clean_block(t_pars *line)
 	{
 		if (runner->type == RED_IN || runner->type == RED_OUT)
 			redir(&runner->block, &runner->type);
-		expander(&runner->block, runner->type);
+		expander(&runner->block, runner->type, data);
 		runner = runner->next;
 	}
 }
