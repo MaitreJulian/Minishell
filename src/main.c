@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/03 11:02:45 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:28:00 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int ac, char **argv, char **env)
 			free(input);
 			continue ;
 		}
-		luthor = lexing(input);
+		luthor = lexing(input, data);
 		if (parsing(luthor) == 0)
 			continue ;
 		f_struct = fill_struct(luthor);
