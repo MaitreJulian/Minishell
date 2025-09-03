@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 10:06:22 by julian            #+#    #+#             */
-/*   Updated: 2025/09/02 13:50:16 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/03 13:40:09 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,36 @@
 static void	update_oldpwd(t_data *data)
 {
 	char	**tmp;
-	char	*test;
+	char	**test;
 	int		i;
 
 	i = 0;
 	tmp = data->envc;
-	test = NULL;
+	test = malloc(sizeof(char *) * 2);
 	while (tmp[i])
 	{
-		if (ft_strncmp(tmp[i], "PWD=", 3) == 0) //On trouve le PWD actuel 
+		if (ft_strncmp(tmp[i], "PWD=", 3) == 0)//On trouve le PWD actuel 
 		{
-			test = tmp[i];
+			test[0] = ft_strdup(tmp[i]);
 			break ;
 		}
 		i++;
 	}
-	if (test)
+	if (test[0])
 	{
-		test = ft_strjoin("OLD", test);//et on rajout OLD devant
-		if (!test)
+		test[0]=ft_strjoin("OLD", test[0]);//et on rajout OLD devant
+		if (!test[0])
 			return ;
-		ft_export(data->envc, &test);//pour l'export après
+		test[1] = NULL;
+		data->envc = ft_export(data->envc, test);//pour l'export après
 	}
-	free(test);
+	free_tab(test);
 }
 
 static void	update_pwd(t_data *data, char *new_pwd)
 {
 	char	cwd[PATH_MAX];
-	char	*pwd;
+	char	**pwd;
 
 	update_oldpwd(data);//le PWD actuel devient le OLPWD
 	if (getcwd(cwd, PATH_MAX) == NULL)
@@ -51,11 +52,13 @@ static void	update_pwd(t_data *data, char *new_pwd)
 		perror(new_pwd);
 		return ;
 	}
-	pwd = ft_strjoin("PWD=", cwd);
-	if (!pwd)
+	pwd =malloc(sizeof(char *) *2);
+	pwd[0] = ft_strjoin("PWD=", cwd);
+	if (!pwd[0])
 		return;//strjoin n'a pas fonctionné
-	ft_export(data->envc, &pwd);//le nouveau PWD est envyé dans l'env
-	free(pwd);
+	pwd[1] =NULL;
+	data->envc  = ft_export(data->envc, pwd);//le nouveau PWD est envyé dans l'env
+	free_tab(pwd);
 }   
 
 int	ft_cd(t_data *data, char *new_pwd)

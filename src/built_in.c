@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:46:48 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/02 14:46:11 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/03 13:41:36 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ bool	do_builtin(t_data *data, t_cmd *cmd_list)
 		ft_exit(data);
 	if (!ok)
 		return (false);
-	cmd_list = cmd_list->next;
 	return (true);
 }
 
