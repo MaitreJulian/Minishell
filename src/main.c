@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/04 14:26:48 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/04 14:36:45 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_data	*init_data(char **env)
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (NULL);
+	data->cmd_list = NULL;
 	data->envc = copy_env(env);
 	return (data);
 }

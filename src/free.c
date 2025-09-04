@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:34:02 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/03 16:00:12 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:37:48 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	free_tab(char **array)
 	free(array);
 }
 
-void	free_cmd_list(t_cmd *cmd_list)
+t_cmd	*free_cmd_list(t_cmd *cmd_list)
 {
 	t_cmd	*tmp;
 	int		i;
@@ -48,11 +48,13 @@ void	free_cmd_list(t_cmd *cmd_list)
 		free(cmd_list);
 		cmd_list = tmp;
 	}
+    return (NULL);
 }
 
 void	free_everything(t_data *data)
 {
-	free_cmd_list(data->cmd_list);
+    
+	data->cmd_list = free_cmd_list(data->cmd_list);
 	free_tab(data->envc);
 	free(data);
 	return ;
