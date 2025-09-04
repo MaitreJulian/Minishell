@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:18:00 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/03 18:09:48 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/04 13:55:28 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**unset_env(char **envc, char *v_env_del, int len)
 	char	**new_env;
 	int		i;
 	int		j;
-	char	temp;
+	char	*temp;
 
 	i = 0;
 	j = 0;

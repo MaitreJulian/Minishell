@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/03 15:28:00 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:26:48 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,42 +23,48 @@ t_data	*init_data(char **env)
 	return (data);
 }
 
+void	eof(t_data *data)
+{
+	free_everything(data);
+	rl_clear_history();
+	printf("exit\n");
+	exit(0);
+}
+void    ft_minishell(t_data *data)
+{
+	t_pars	*luthor;
+	char	*input;
+	
+	while (1)
+	{
+		input = readline("Minishell > ");
+		if (!input)
+			eof(data);
+		if (input[0] == '\0')
+		{
+			free(input);
+			continue ;
+		}
+		if (ft_strlen(input) > 0)
+			add_history(input);
+		luthor = lexing(input, data);
+		if (parsing(luthor) == 0)
+			continue ;
+		data->cmd_list = fill_struct(luthor);
+		pipe_or_not(data);
+		if (!(input[0] == '\0'))
+			free_cmd_list(data->cmd_list);
+		free(input);
+	}
+}
 int	main(int ac, char **argv, char **env)
 {
-	char	*input;
 	t_data	*data;
-	t_pars	*luthor;
-	t_cmd	*f_struct;
 
 	(void)argv;
 	if (ac != 1)
 		return (1);
 	setup_signals();
 	data = init_data(env);
-	while (1)
-	{
-		input = readline("Minishell > ");
-		if (!input)
-		{
-			rl_clear_history();
-			printf("exit\n");
-			exit(0);
-		}
-		if (ft_strlen(input) > 0)
-			add_history(input);
-		if (input[0] == '\0')
-		{
-			free(input);
-			continue ;
-		}
-		luthor = lexing(input, data);
-		if (parsing(luthor) == 0)
-			continue ;
-		f_struct = fill_struct(luthor);
-		data->cmd_list = f_struct;
-		pipe_or_not(data);
-		if (!(input[0] == '\0'))
-			free_cmd_list(data->cmd_list);
-		free(input);
-	}
+	ft_minishell(data);	
 }
