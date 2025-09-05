@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/04 14:36:45 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/04 14:47:56 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void    ft_minishell(t_data *data)
 		data->cmd_list = fill_struct(luthor);
 		pipe_or_not(data);
 		if (!(input[0] == '\0'))
-			free_cmd_list(data->cmd_list);
+			data->cmd_list = free_cmd_list(data->cmd_list);
 		free(input);
 	}
 }

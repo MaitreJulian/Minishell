@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exportc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:12:49 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/03 16:29:00 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:02:42 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char	**realloc_envp(char **envp, int new_size)//on realloue l'env avec 1 place e
 		}
 		i++;
 	}
+    free_tab(envp);
 	new_envp[i] = NULL;
 	return (new_envp);
 }

@@ -6,7 +6,7 @@
 /*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:18:00 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/04 13:55:28 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/04 15:27:12 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,17 @@ char	**unset_env(char **envc, char *v_env_del, int len)
 {
 	char	**new_env;
 	int		i;
-	int		j;
-	char	*temp;
+    int     j;
 
 	i = 0;
-	j = 0;
+    j = 0;
 	new_env = malloc(sizeof(char *) * len_env(envc));
 	while (envc[i])
 	{
-		if (strncmp(envc[i], v_env_del, len) == 0 && envc[i][len] == '=')
+		if (ft_strncmp(envc[i], v_env_del, len) == 0 && envc[i][len] == '=')
 			i++;
 		else
-		{
-			temp = ft_strdup(v_env_del);
-			free(new_env[i]);
-			new_env[i] = temp;
-			return (new_env);
-		}
+			new_env[j++] = ft_strdup(envc[i++]);
 	}
 	free_tab(envc);
 	new_env[j] = NULL;
@@ -67,7 +61,6 @@ char	**ft_unset(char **envc, char **v_env_del)
 {
 	int		len;
 
-	free_tab(envc);
 	while (*v_env_del)
 	{
 		len = ft_strlen(*v_env_del);
