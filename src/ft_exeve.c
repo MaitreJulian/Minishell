@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:53:35 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/03 18:01:09 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/05 13:49:53 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,13 @@ char	*get_path(char *cmd, char **env)
 	char	*exec;
 	char	*path_part;
 	char	**allpath;
+	char	*temp;
 
 	i = -1;
-	allpath = ft_split(my_getenv("PATH", env), ':');
+	temp = my_getenv("PATH", env);
+	if (!temp)
+		return (NULL);
+	allpath = ft_split(temp, ':');
 	while (allpath[++i])
 	{
 		path_part = ft_strjoin(allpath[i], "/");
@@ -78,7 +82,11 @@ void	ft_execve(char **cmd, char **env)
 	path = get_path(cmd[0], env);
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
-	if (execve(path, cmd, env) == -1)
+	if (!path)
+	{
+		printf("%s: No such file or directory\n", cmd[0]);
+	}
+	else if (execve(path, cmd, env) == -1)
 	{
 		perror("execve failed");
 	}
