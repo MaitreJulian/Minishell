@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/03 15:27:49 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/05 14:46:45 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_data
 {
 	t_cmd			*cmd_list;
 	char			**envc;
+	int				exit_status;
 }		t_data;
 
 
@@ -91,7 +92,7 @@ int		ft_issep(int type);
 void	clean_block(t_pars *line, t_data *data);
 void	fill_block(t_pars **data, char *str, int type);
 void	expander(char **str, int type, t_data *data);
-int	 parsing(t_pars *line);
+int		parsing(t_pars *line, t_data *data);
 t_cmd	*fill_struct(t_pars *luthor);
 void	syntax_error_c(char c);
 char	*ft_getenv(char *src, char **env);
@@ -131,7 +132,7 @@ void	ft_exit(t_data *data);
 
 //FREE
 void	free_tab(char **array);
-void	free_cmd_list(t_cmd *cmd_list);
+t_cmd	*free_cmd_list(t_cmd *cmd_list);
 void	free_everything(t_data *data);
 
 //UTILS

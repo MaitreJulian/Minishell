@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:53:35 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/05 13:49:53 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/05 15:07:21 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ void	ft_execve(char **cmd, char **env)
 	else if (execve(path, cmd, env) == -1)
 	{
 		perror("execve failed");
+		exit(127);
 	}
 }

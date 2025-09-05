@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:35:14 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/02 10:27:00 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/05 14:47:44 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_echo(char **args)
 
 	backsn = true;
 	i = 1;
-	if (strncmp(args[i], "-n", 3) == 0)//Je verifie que si il y a le flag -n
+	if (args[i] && strncmp(args[i], "-n", 3) == 0)//Je verifie que si il y a le flag -n
 	{
 		backsn = false;
 		i++;

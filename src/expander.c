@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:49:17 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/03 15:30:31 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/05 14:43:22 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*check_var(char *str, int i, t_data *data)
 	i++;
 	var = NULL;
 	value = NULL;
+	if (str[i] == '?')
+		return (ft_itoa(data->exit_status));
 	while (str[i] && ft_isspace(str[i]) == 0 && \
 	is_quote(str[i]) == 0 && str[i] != '$')
 		var = ft_realloc(var, str[i++]);

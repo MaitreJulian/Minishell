@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/04 14:47:56 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/05 14:46:23 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void    ft_minishell(t_data *data)
 		if (ft_strlen(input) > 0)
 			add_history(input);
 		luthor = lexing(input, data);
-		if (parsing(luthor) == 0)
+		if (parsing(luthor, data) == 0)
 			continue ;
 		data->cmd_list = fill_struct(luthor);
 		pipe_or_not(data);
