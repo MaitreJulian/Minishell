@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:47:51 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/29 14:36:25 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/05 14:45:27 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,14 +174,24 @@ void	delete_quote(t_pars **line)
 	}
 }
 
-int	parsing(t_pars *line)
+int	parsing(t_pars *line, t_data *data)
 {
+	(void)data;
 	if (verif_some_shi(line) == 0)
+	{
+		data->exit_status = 2;
 		return (0);
+	}
 	if (validate_line(line) == 0)
+	{
+		data->exit_status = 2;
 		return (0);
+	}
 	if (verif_word(line) == 0)
+	{
+		data->exit_status = 2;
 		return (0);
+	}
 	delete_quote(&line);
 	return (1);
 }

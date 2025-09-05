@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exeve.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:53:35 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/03 18:01:09 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/05 14:42:08 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void	ft_execve(char **cmd, char **env)
 	if (execve(path, cmd, env) == -1)
 	{
 		perror("execve failed");
+		exit(127);
 	}
 }
