@@ -6,14 +6,25 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:15:50 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/02 10:31:33 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/08 11:08:07 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_exit(t_data *data)
+bool	ft_exit(t_data *data, char *code)
 {
-    free_everything(data);
-    exit(0);
+	int	i;
+
+	i = 0;
+	while (code[i] && ft_isdigit(code[i]))
+		i++;
+	if (code[i] && !ft_isdigit(code[i]))
+	{
+		printf("exit : %s: numeric argument required\n", code);
+		return (false);
+	}
+	free_everything (data);
+	exit (ft_atoi(code));
+	return (true);
 }

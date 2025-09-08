@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:46:48 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/03 13:41:36 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/08 10:45:18 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ bool	do_builtin(t_data *data, t_cmd *cmd_list)
 	else if (!ft_strcmp("unset", cmd_list->cmd[0]))
 		data->envc = ft_unset(data->envc, cmd_list->cmd + 1);
 	else if (!ft_strcmp("env", cmd_list->cmd[0]))
-		ft_env(data->envc);
+		ft_env(data);
 	else if (!ft_strcmp("exit", cmd_list->cmd[0]))
-		ft_exit(data);
+		ok = ft_exit(data, cmd_list->cmd [1]);
 	if (!ok)
 		return (false);
 	return (true);
@@ -61,7 +61,5 @@ bool	do_builtin(t_data *data, t_cmd *cmd_list)
 void	launch_builtin(t_data *data, t_cmd *cmd_list)
 {
 	if (!do_builtin(data, cmd_list))
-	{
-		printf("builtin failed\n");
-	}
+		return ;
 }

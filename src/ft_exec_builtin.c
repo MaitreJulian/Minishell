@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 14:34:52 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/18 11:45:33 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/05 15:46:34 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ void    ft_exec_builtin(t_data *data, t_cmd *cmd_list)
 	{
 		// printf("External command: %s\n", cmd_list->cmd[0]);
 		ft_execve(cmd_list->cmd, data->envc);
-		ft_exit(data);//En cas d'erreur
 	}
 }

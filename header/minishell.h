@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/05 14:46:45 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/08 10:47:22 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,10 @@ void	pipe_or_not(t_data *data);
 char	**ft_export(char **envc, char **new_v);
 int		ft_cd(t_data *data, char *new_pwd);
 void	ft_echo(char **args);
-void	ft_env(char **env);
+void	ft_env(t_data *data);
 void	ft_pwd(char **env);
 char	**ft_unset(char **envc, char **v_env_del);
-void	ft_exit(t_data *data);
+bool	ft_exit(t_data *data, char *code);
 
 //FREE
 void	free_tab(char **array);
