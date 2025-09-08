@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+         #
+#    By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 11:33:48 by jowoundi          #+#    #+#              #
-#    Updated: 2025/09/03 17:39:11 by jvenkata         ###   ########.fr        #
+#    Updated: 2025/09/08 17:07:40 by jowoundi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ OBJ_DIR = obj
 # Source files (relative to SRC_DIR)
 SRCS =	main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c fill_structure.c \
 		ft_getenv.c \
+		split_space.c \
 		handle_error.c \
 		builtins/ft_cd.c \
 		builtins/ft_echo.c \

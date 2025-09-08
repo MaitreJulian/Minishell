@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/08 10:47:22 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/08 18:31:25 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,14 @@ typedef struct s_data
 
 //LEXING
 t_pars	*lexing(char *line, t_data *data);
+int		size_str(char *line, int type, int i);
+char	*copy_str(char *line, int i, int j);
 int		type_of_c(char c);
 int		c_sep(char c);
 int		is_quote(char c);
 int		ft_issep(int type);
 void	clean_block(t_pars *line, t_data *data);
+t_pars	*split_space(t_pars *line);
 void	fill_block(t_pars **data, char *str, int type);
 void	expander(char **str, int type, t_data *data);
 int		parsing(t_pars *line, t_data *data);
