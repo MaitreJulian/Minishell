@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/05 14:46:23 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/08 19:22:55 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_data	*init_data(char **env)
 	if (!data)
 		return (NULL);
 	data->cmd_list = NULL;
-	data->envc = copy_env(env);
+	data->envc = copy_env_init(env);
 	return (data);
 }
 

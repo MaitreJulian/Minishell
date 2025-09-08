@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/08 18:31:25 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:10:19 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	handler(int sig);
 void setup_signals(void);
 
 //MAIN
-char	**copy_env(char **envp);
+char	**copy_env_init(char **env);
 //t_cmd	*make_cmd_list(char *s, t_data *data);
 bool	red_heredoc(t_cmd **cmd_node, int i);
 bool	red_out(t_cmd **cmd_node, int i);;

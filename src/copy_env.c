@@ -6,14 +6,38 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:13:40 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/08/27 16:16:45 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:53:13 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <string.h>
+#include "minishell.h"
 
-char	**copy_env(char **envp)
+char	**add_shlvl(char **env)
+{
+	int		i;
+	int		lvl;
+	char	**temp;
+	char	*nb;
+
+	i = 0;
+	temp = malloc(sizeof(char *) * 2);
+	while (env[i] && ft_strncmp("SHLVL=", env[i], 6))
+		i++;
+	if (env[i] && !ft_strncmp("SHLVL=", env[i], 6))
+	{
+		lvl = ft_atoi(ft_memchr(env[i], '=', 6) + 1);
+		lvl++;
+		nb = ft_itoa(lvl);
+		temp[0] = ft_strjoin("SHLVL=", nb);
+		temp[1] = NULL;
+		free(nb);
+		env = ft_export(env, temp);
+		free_tab(temp);
+	}
+	return (env);
+}
+
+char	**copy_env_init(char **envp)
 {
 	int		i;
 	int		count;
@@ -31,13 +55,12 @@ char	**copy_env(char **envp)
 		env_copy[count] = strdup(envp[count]);
 		if (!env_copy[count])
 		{
-			while (i-- > 0)
-				free(env_copy[i]);
-			free(env_copy);
+			free_tab(env_copy);
 			return (NULL);
 		}
 		count++;
 	}
 	env_copy[i] = NULL;
+	env_copy = add_shlvl(env_copy);
 	return (env_copy);
 }
