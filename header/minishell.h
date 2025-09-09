@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/08 20:10:19 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/09 12:14:42 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int		ft_redirection(t_cmd **cmd_node);
 
 //exec
 void	launch_builtin(t_data *data, t_cmd *cmd_list);
+char	*my_getenv(char *name, char **env);
 void	ft_execve(char **cmd, char **envc);
 bool	is_builtin(char *cmd);
 bool	is_nofork_builtin(char *cmd);

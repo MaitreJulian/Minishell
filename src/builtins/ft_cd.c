@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 10:06:22 by julian            #+#    #+#             */
-/*   Updated: 2025/09/03 16:34:41 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/09 14:25:12 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	update_old(t_data *data, char **old_var_env, int i)
 	}
 	if (old_var_env[0])
 	{
-		temp=ft_strjoin("OLD", old_var_env[0]);//et on rajout OLD devant
+		temp = ft_strjoin("OLD", old_var_env[0]);//et on rajout OLD devant
 		free(old_var_env[0]);
 		old_var_env[0] = temp;
 		if (!old_var_env[0])
@@ -45,6 +45,11 @@ static void	update_oldpwd(t_data *data)
 	int		i;
 
 	i = 0;
+	if (!my_getenv("PWD", data->envc))
+	{
+		data->envc = ft_unset(data->envc, (char *[]){"OLDPWD", NULL});
+		return ;
+	}
 	old_var_env = malloc(sizeof(char *) * 2);
 	update_old(data, old_var_env, i);
 	free_tab(old_var_env);
@@ -61,7 +66,9 @@ static void	update_pwd(t_data *data, char *new_pwd)
 		perror(new_pwd);
 		return ;
 	}
-	pwd =malloc(sizeof(char *) *2);
+	if (!my_getenv("PWD", data->envc))
+		return ;
+	pwd = malloc(sizeof(char *) * 2);
 	pwd[0] = ft_strjoin("PWD=", cwd);
 	if (!pwd[0])
 		return;//strjoin n'a pas fonctionné
