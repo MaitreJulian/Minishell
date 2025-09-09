@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:39:02 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/05 14:45:49 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:34:55 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,58 +60,56 @@ void	do_parent(t_cmd *cmd, int *pfd)
 
 void	wait_sig_pid(t_data *data)
 {
-    int		status;
-    int		sig;
-    pid_t	wpid;
+	int		status;
+	int		sig;
+	pid_t	wpid;
 
-    while (1)
-    {
-        wpid = waitpid(-1, &status, 0);
-        if (wpid == -1)
-            break ;
-        if (WIFSIGNALED(status))
-        {
-            sig = WTERMSIG(status);
-            data->exit_status = 128 + sig;
-            if (sig == SIGQUIT)
-                write(STDOUT_FILENO, "Quit (core dumped)\n", 19);
-            else if (sig == SIGINT)
-            {
-                write(STDOUT_FILENO, "\n", 1);
-            }
-        }
-        else if (WIFEXITED(status))
-        {
-            data->exit_status = WEXITSTATUS(status);
-        }
-    }
-    setup_signals();
+	while (1)
+	{
+		wpid = waitpid(-1, &status, 0);
+		if (wpid == -1)
+			break ;
+		if (WIFSIGNALED(status))
+		{
+			sig = WTERMSIG(status);
+			data->exit_status = 128 + sig;
+			if (sig == SIGQUIT)
+				write(STDOUT_FILENO, "Quit (core dumped)\n", 19);
+			else if (sig == SIGINT)
+				write(STDOUT_FILENO, "\n", 1);
+		}
+		else if (WIFEXITED(status))
+		{
+			data->exit_status = WEXITSTATUS(status);
+		}
+	}
+	setup_signals();
 }
 
 void	exec_pipeline(t_data *data)
 {
-    t_cmd	*current;
-    int		pfd[2];
-    pid_t	pid;
+	t_cmd	*current;
+	int		pfd[2];
+	pid_t	pid;
 
-    current = data->cmd_list;
-    signal(SIGINT, SIG_IGN);
-    signal(SIGQUIT, SIG_IGN);
-    while (current)
-    {
-        if (current->next)
-            pipe(pfd);
-        else
-        {
-            pfd[0] = -1;
-            pfd[1] = -1;
-        }
-        pid = fork();
-        if (pid == 0)
-            do_child(data, current, pfd);
-        else
-            do_parent(current, pfd);
-        current = current->next;
-    }
-    wait_sig_pid(data);
+	current = data->cmd_list;
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+	while (current)
+	{
+		if (current->next)
+			pipe(pfd);
+		else
+		{
+			pfd[0] = -1;
+			pfd[1] = -1;
+		}
+		pid = fork();
+		if (pid == 0)
+			do_child(data, current, pfd);
+		else
+			do_parent(current, pfd);
+		current = current->next;
+	}
+	wait_sig_pid(data);
 }

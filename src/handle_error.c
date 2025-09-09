@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:18:52 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/08/30 11:26:22 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:34:10 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	syntax_error_c(char c)
 {
-		printf("minishell : syntax error near unexpected token `%c'\n", c);
+	printf("minishell : syntax error near unexpected token `%c'\n", c);
 }

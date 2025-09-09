@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:35:14 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/05 14:47:44 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:29:51 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// #include "minishell.h"
 
 #include "minishell.h"
 
@@ -21,7 +19,7 @@ void	ft_echo(char **args)
 
 	backsn = true;
 	i = 1;
-	if (args[i] && strncmp(args[i], "-n", 3) == 0)//Je verifie que si il y a le flag -n
+	if (args[i] && strncmp(args[i], "-n", 3) == 0)
 	{
 		backsn = false;
 		i++;
@@ -36,14 +34,3 @@ void	ft_echo(char **args)
 	if (backsn)
 		printf("\n");
 }
-
-// int main()
-// {
-// 	char *args[] = {"echo", "hello", "world", NULL};
-// 	char *argds[] = {"echo", "-n", "fils de", "pute", NULL};
-// 	ft_echo(args);
-// 	ft_echo(argds);
-	
-// 	return 0;
-// }
-

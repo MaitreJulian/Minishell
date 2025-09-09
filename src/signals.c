@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 13:33:20 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/02 19:09:57 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/09 17:33:17 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	handler(int sig)
 
 void	setup_signals(void)
 {
-	struct sigaction sa_int;
-	struct sigaction sa_quit;
+	struct sigaction	sa_int;
+	struct sigaction	sa_quit;
 
 	memset(&sa_int, 0, sizeof(sa_int));
 	sa_int.sa_handler = handler;
@@ -40,4 +40,3 @@ void	setup_signals(void)
 	if (sigaction(SIGQUIT, &sa_quit, NULL) == -1)
 		perror("sigaction SIGQUIT");
 }
-

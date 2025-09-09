@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exportc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:12:49 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/04 15:02:42 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/09 17:30:30 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	is_valid_identifier(const char *str)
 	return (1);
 }
 
-char	**realloc_envp(char **envp, int new_size)//on realloue l'env avec 1 place en plus
+char	**realloc_envp(char **envp, int new_size)
 {
 	char	**new_envp;
 	int		i;
@@ -52,7 +52,7 @@ char	**realloc_envp(char **envp, int new_size)//on realloue l'env avec 1 place e
 		}
 		i++;
 	}
-    free_tab(envp);
+	free_tab(envp);
 	new_envp[i] = NULL;
 	return (new_envp);
 }
@@ -65,7 +65,7 @@ char	**new_env(char **nenv, char *new_v, int len)
 	i = -1;
 	while (nenv[++i])
 	{
-		if (strncmp(nenv[i], new_v, len) == 0 && nenv[i][len] == '=')//la variable existe deja on la remplace
+		if (strncmp(nenv[i], new_v, len) == 0 && nenv[i][len] == '=')
 		{
 			temp = ft_strdup(new_v);
 			free(nenv[i]);

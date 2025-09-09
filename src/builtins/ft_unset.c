@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:18:00 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/04 15:27:12 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/09 17:31:15 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ char	**unset_env(char **envc, char *v_env_del, int len)
 {
 	char	**new_env;
 	int		i;
-    int     j;
+	int		j;
 
 	i = 0;
-    j = 0;
+	j = 0;
 	new_env = malloc(sizeof(char *) * len_env(envc));
 	while (envc[i])
 	{

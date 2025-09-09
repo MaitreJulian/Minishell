@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 10:06:22 by julian            #+#    #+#             */
-/*   Updated: 2025/09/09 15:10:05 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:31:57 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	update_old(t_data *data, char **old_var_env, int i)
 	tmp = data->envc;
 	while (tmp[i])
 	{
-		if (ft_strncmp(tmp[i], "PWD=", 3) == 0)//On trouve le PWD actuel 
+		if (ft_strncmp(tmp[i], "PWD=", 3) == 0)
 		{
 			old_var_env[0] = ft_strdup(tmp[i]);
 			break ;
@@ -45,13 +45,13 @@ void	update_old(t_data *data, char **old_var_env, int i)
 	}
 	if (old_var_env[0])
 	{
-		temp = ft_strjoin("OLD", old_var_env[0]);//et on rajout OLD devant
+		temp = ft_strjoin("OLD", old_var_env[0]);
 		free(old_var_env[0]);
 		old_var_env[0] = temp;
 		if (!old_var_env[0])
 			return ;
 		old_var_env[1] = NULL;
-		data->envc = ft_export(data->envc, old_var_env);//pour l'export après
+		data->envc = ft_export(data->envc, old_var_env);
 	}
 }
 
@@ -76,7 +76,7 @@ static void	update_pwd(t_data *data, char *new_pwd)
 	char	cwd[PATH_MAX];
 	char	**pwd;
 
-	update_oldpwd(data);//le PWD actuel devient le OLPWD
+	update_oldpwd(data);
 	if (getcwd(cwd, PATH_MAX) == NULL)
 	{
 		perror(new_pwd);
@@ -87,11 +87,11 @@ static void	update_pwd(t_data *data, char *new_pwd)
 	pwd = malloc(sizeof(char *) * 2);
 	pwd[0] = ft_strjoin("PWD=", cwd);
 	if (!pwd[0])
-		return;//strjoin n'a pas fonctionné
-	pwd[1] =NULL;
-	data->envc  = ft_export(data->envc, pwd);//le nouveau PWD est envyé dans l'env
+		return ;
+	pwd[1] = NULL;
+	data->envc = ft_export(data->envc, pwd);
 	free_tab(pwd);
-}   
+}
 
 int	ft_cd(t_data *data, char **new_pwd)
 {
@@ -102,7 +102,7 @@ int	ft_cd(t_data *data, char **new_pwd)
 		free(*new_pwd);
 		*new_pwd = get_oldpwd(data->envc);
 	}
-	res = chdir(*new_pwd);//on change de répertoire mais faut mettre à jour manuelllement le PWD dans l'env
+	res = chdir(*new_pwd);
 	if (res == 0)
 	{
 		update_pwd(data, *new_pwd);
