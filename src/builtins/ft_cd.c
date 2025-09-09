@@ -6,11 +6,27 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 10:06:22 by julian            #+#    #+#             */
-/*   Updated: 2025/09/09 14:25:12 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:10:05 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*get_oldpwd(char **env)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	while (env[i] && strncmp(env[i], "OLDPWD", 6) != 0)
+		i++;
+	if (env[i] && (strncmp(env[i], "OLDPWD", 6) == 0 && env[i][6] == '='))
+	{
+		str = ft_substr(env[i], 7, ft_strlen(env[i]) - 7);
+		return (str);
+	}
+	return (NULL);
+}
 
 void	update_old(t_data *data, char **old_var_env, int i)
 {
@@ -77,19 +93,24 @@ static void	update_pwd(t_data *data, char *new_pwd)
 	free_tab(pwd);
 }   
 
-int	ft_cd(t_data *data, char *new_pwd)
+int	ft_cd(t_data *data, char **new_pwd)
 {
-	int	res;
+	int		res;
 
-	res = chdir(new_pwd);//on change de répertoire mais faut mettre à jour manuelllement le PWD dans l'env
+	if (*new_pwd[0] == '-')
+	{
+		free(*new_pwd);
+		*new_pwd = get_oldpwd(data->envc);
+	}
+	res = chdir(*new_pwd);//on change de répertoire mais faut mettre à jour manuelllement le PWD dans l'env
 	if (res == 0)
 	{
-		update_pwd(data, new_pwd);
+		update_pwd(data, *new_pwd);
 		return (1);
 	}
 	if (res == -1)
 	{
-		perror(new_pwd);
+		perror(*new_pwd);
 		return (0);
 	}
 	return (res);
