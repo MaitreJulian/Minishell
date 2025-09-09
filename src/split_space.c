@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_space.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:21:31 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/08 15:33:57 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/09 11:17:59 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_pars	*split_space(t_pars *line)
 	}
 	while (line)
 	{
+		//Je cherche les leaks, tu dois free aussi le noeud 'line'. Fais un autre temp free line et passe a next
 		free(line->block);
 		line = line->next;
 	}
