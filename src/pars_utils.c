@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 14:49:53 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/09 14:50:09 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:50:05 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	verif_some_shi(t_pars *line)
 		if (runner->type == WORD)
 		{
 			if (verif_quote(runner->block) == 0)
-				return (printf("unclosed quote\n"),0);
+				return (printf("unclosed quote\n"), 0);
 		}
 		runner = runner->next;
 	}

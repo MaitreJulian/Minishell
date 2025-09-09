@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:34:02 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/04 14:37:48 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/09 16:49:05 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,18 @@ void	free_everything(t_data *data)
 	free_tab(data->envc);
 	free(data);
 	return ;
+}
+
+void	free_pars(t_pars *pars_struct)
+{
+	t_pars	*tmp;
+
+	while (pars_struct)
+	{
+		tmp = pars_struct->next;
+		free(pars_struct->block);
+		free(pars_struct);
+		pars_struct = tmp;
+	}
+	pars_struct = NULL;
 }

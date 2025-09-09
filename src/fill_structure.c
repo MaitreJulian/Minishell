@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:01:33 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/09 16:28:50 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:48:45 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_cmd	*fill_struct(t_pars *line)
 		if (line->type == PIPE)
 		{
 			line = line->next;
-			continue;
+			continue ;
 		}
 		process_command_block(&f_struct, &line, &nb_cmd);
 		while (line && line->type != PIPE)
@@ -95,5 +95,6 @@ t_cmd	*fill_struct(t_pars *line)
 	}
 	if (f_struct)
 		f_struct->n_cmd = nb_cmd;
+	free(line);
 	return (f_struct);
 }

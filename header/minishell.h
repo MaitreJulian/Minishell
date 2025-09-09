@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/09 16:30:47 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:47:14 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ bool	ft_exit(t_data *data, char *code);
 void	free_tab(char **array);
 t_cmd	*free_cmd_list(t_cmd *cmd_list);
 void	free_everything(t_data *data);
+void	free_pars(t_pars *pars_struct);
 
 //UTILS
 int		len_tab(char **tb);
