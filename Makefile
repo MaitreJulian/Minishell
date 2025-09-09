@@ -6,7 +6,7 @@
 #    By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 11:33:48 by jowoundi          #+#    #+#              #
-#    Updated: 2025/09/08 17:07:40 by jowoundi         ###   ########.fr        #
+#    Updated: 2025/09/09 16:30:13 by jowoundi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ OBJ_DIR = obj
 SRCS =	main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c fill_structure.c \
 		ft_getenv.c \
 		split_space.c \
+		fill_struct_utils.c \
+		pars_utils.c \
 		handle_error.c \
 		builtins/ft_cd.c \
 		builtins/ft_echo.c \
