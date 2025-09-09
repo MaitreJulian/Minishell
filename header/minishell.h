@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/09 17:27:49 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:40:49 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	fill_block(t_pars **data, char *str, int type);
 void	expander(char **str, int type, t_data *data);
 int		parsing(t_pars *line, t_data *data);
 t_cmd	*fill_struct(t_pars *luthor);
-void	syntax_error_c(char c);
+void	syntax_error_c(int n, char c, char *str);
 char	*ft_getenv(char *src, char **env);
 int		count_until_pipe(t_pars *line);
 char	**dup_args_from_list(t_pars **line, int count);

@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 14:49:53 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/09 16:50:05 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:40:22 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	validate_line(t_pars *line)
 			if (!runner->next || runner->next->type != WORD)
 			{
 				if (runner->next)
-					printf("minishell: syntax error near unexpected token `%s'\n", runner->next->block);
+					syntax_error_c(2, 0, runner->next->block);
 				else
-					printf("minishell: `%s' cannot be the last argument\n", runner->block);
+					syntax_error_c(3, 0, runner->block);
 				return (0);
 			}
 		}
@@ -40,20 +40,20 @@ int	validate_line(t_pars *line)
 int	word(char c)
 {
 	if (c == '&')
-		return (syntax_error_c(c), 0);
+		return (syntax_error_c(1, c, NULL), 0);
 	else if (c == '(' || c == ')')
-		return (syntax_error_c(c), 0);
+		return (syntax_error_c(1, c, NULL), 0);
 	else if (c == '{' || c == '}')
-		return (syntax_error_c(c), 0);
+		return (syntax_error_c(1, c, NULL), 0);
 	else if (c == '[' || c == ']')
-		return (syntax_error_c(c), 0);
+		return (syntax_error_c(1, c, NULL), 0);
 	return (1);
 }
 
 int	verif_redir(char *str)
 {
 	if (ft_strlen(str) > 2)
-		return (syntax_error_c(str[0]), 0);
+		return (syntax_error_c(1, str[0], NULL), 0);
 	return (1);
 }
 
