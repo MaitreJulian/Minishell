@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:34:02 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/09 16:49:05 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:32:13 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_cmd	*free_cmd_list(t_cmd *cmd_list)
 
 void	free_everything(t_data *data)
 {
-    
 	data->cmd_list = free_cmd_list(data->cmd_list);
 	free_tab(data->envc);
 	free(data);

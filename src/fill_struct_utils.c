@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_struct_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 14:45:54 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/09 14:47:02 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:29:19 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,10 @@ char	**dup_args_from_list(t_pars **line, int count)
 	i = 0;
 	while (*line && (*line)->type != PIPE)
 	{
-		new_line[i++] = ft_strdup((*line)->block);
+		new_line[i] = ft_strdup((*line)->block);
 		temp = (*line)->next;
-		free((*line)->block);
-		free(*line);
 		*line = temp;
+		i++;
 	}
 	new_line[i] = NULL;
 	return (new_line);

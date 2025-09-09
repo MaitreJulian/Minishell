@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+         #
+#    By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 11:33:48 by jowoundi          #+#    #+#              #
-#    Updated: 2025/09/09 16:30:13 by jowoundi         ###   ########.fr        #
+#    Updated: 2025/09/09 17:42:46 by jvenkata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,6 @@ SRCS =	main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c f
 		ft_exeve.c \
 		ft_exec_builtin.c \
 		pipeornot.c \
-		make_cmd_list.c \
 		free.c \
 		red_spec.c \
 		redirection.c \

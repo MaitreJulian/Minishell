@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_structure.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:01:33 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/09 16:48:45 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:31:21 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,10 @@ void	process_command_block(t_cmd **f_struct, t_pars **line, int *nb_cmd)
 t_cmd	*fill_struct(t_pars *line)
 {
 	t_cmd	*f_struct;
+	t_pars	*runner;
 	int		nb_cmd;
 
+	runner = line;
 	f_struct = NULL;
 	nb_cmd = 0;
 	while (line != NULL)
@@ -95,6 +97,6 @@ t_cmd	*fill_struct(t_pars *line)
 	}
 	if (f_struct)
 		f_struct->n_cmd = nb_cmd;
-	free(line);
+	free_pars(runner);
 	return (f_struct);
 }

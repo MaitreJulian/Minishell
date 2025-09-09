@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_space.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:21:31 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/09 16:47:51 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:10:21 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,15 @@ t_pars	*split_space(t_pars *line)
 	t_pars	*tmp;
 
 	runner = line;
-	while (runner)
+	tmp = NULL;
+	while (line)
 	{
-		if (runner->type == WORD)
-			tmp = spliter(runner->block, tmp);
+		if (line->type == WORD)
+			tmp = spliter(line->block, tmp);
 		else
-			fill_block(&tmp, runner->block, runner->type);
-		runner = runner->next;
+			fill_block(&tmp, line->block, line->type);
+		line = line->next;
 	}
-	free_pars(line);
+	free_pars(runner);
 	return (tmp);
 }
