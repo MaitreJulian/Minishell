@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:49:17 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/05 14:43:22 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:28:33 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,65 @@ char	*check_var(char *str, int i, t_data *data)
 	return (value);
 }
 
-void	expander(char **str, int type, t_data *data)
+int	handle_single_quotes(char **str, int i, char **new_line)
+{
+	*new_line = ft_realloc(*new_line, (*str)[i]);
+	i++;
+	while ((*str)[i] && (*str)[i] != '\'')
+	{
+		*new_line = ft_realloc(*new_line, (*str)[i]);
+		i++;
+	}
+	return (i);
+}
+
+int	handle_double_quotes(char **str, int i, char **new_line, t_data *data)
 {
 	char	*var;
+
+	*new_line = ft_realloc(*new_line, (*str)[i]);
+	i++;
+	while ((*str)[i] && (*str)[i] != '"')
+	{
+		if ((*str)[i] && (*str)[i] == '$')
+		{
+			var = check_var(*str, i, data);
+			if (!var)
+				var = ft_strdup("");
+			*new_line = ft_strjoin(*new_line, var);
+			i++;
+			while ((*str)[i] && ft_isspace((*str)[i]) == 0 && \
+				is_quote((*str)[i]) == 0 && (*str)[i] != '$')
+				i++;
+		}
+		else
+		{
+			*new_line = ft_realloc(*new_line, (*str)[i]);
+			i++;
+		}
+	}
+	return (i);
+}
+
+int	handle_dollar(char **str, int i, char **new_line, t_data *data)
+{
+	char	*var;
+
+	var = check_var(*str, i, data);
+	if (!var)
+		var = ft_strdup("");
+	*new_line = ft_strjoin(*new_line, var);
+	i++;
+	while ((*str)[i] && ft_isspace((*str)[i]) == 0 && \
+		is_quote((*str)[i]) == 0 && (*str)[i] != '$')
+		i++;
+	return (i);
+}
+
+void	expander(char **str, int type, t_data *data)
+{
 	char	*new_line;
 	int		i;
-	//quand je decouperai la fonction : faire des fonctions en int pour garder le i
 
 	i = 0;
 	new_line = NULL;
@@ -46,57 +99,15 @@ void	expander(char **str, int type, t_data *data)
 		while ((*str)[i])
 		{
 			if ((*str)[i] == '\'')
-			{
-				new_line = ft_realloc(new_line, (*str)[i]);
-				i++;
-				while ((*str)[i] && (*str)[i] != '\'')
-				{
-					new_line = ft_realloc(new_line, (*str)[i]);
-					i++;
-				}
-			}
+				i = handle_single_quotes(str, i, &new_line);
 			else if ((*str)[i] == '"')
-			{
-				new_line = ft_realloc(new_line, (*str)[i]);
-				i++;
-				while ((*str)[i] && (*str)[i] != '"')
-				{
-					if ((*str)[i] && (*str)[i] == '$')
-					{
-						var = check_var(*str, i, data);
-						if (!var)
-							var = ft_strdup("");
-						new_line = ft_strjoin(new_line, var);
-						i++;
-						while ((*str)[i] && ft_isspace((*str)[i]) == 0 && is_quote((*str)[i]) == 0 && (*str)[i] != '$')
-							i++;
-					}
-					else
-					{
-						new_line = ft_realloc(new_line, (*str)[i]);
-						i++;
-					}
-				}
-				new_line = ft_realloc(new_line, (*str)[i]);
-				i++;
-			}
+				i = handle_double_quotes(str, i, &new_line, data);
+			else if ((*str)[i] == '$')
+				i = handle_dollar(str, i, &new_line, data);
 			else
 			{
-				if ((*str)[i] && (*str)[i] == '$')
-				{
-					var = check_var(*str, i, data);
-					if (!var)
-						var = ft_strdup("");
-					new_line = ft_strjoin(new_line, var);
-					i++;
-					while ((*str)[i] && ft_isspace((*str)[i]) == 0 && is_quote((*str)[i]) == 0 && (*str)[i] != '$')
-						i++;
-				}
-				else
-				{
-					new_line = ft_realloc(new_line, (*str)[i]);
-					i++;
-				}
+				new_line = ft_realloc(new_line, (*str)[i]);
+				i++;
 			}
 		}
 		free(*str);

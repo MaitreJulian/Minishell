@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:22:52 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/02 13:15:58 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:29:59 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,24 @@ void	print_list(t_pars *list)
 	{
 		printf("TYPE : [%d], STR :[%s]\n", node->type, node->block);
 		node = node->next;
+	}
+}
+
+void	new_print(t_cmd *line)
+{
+	t_cmd	*runner;
+	int		i;
+
+	runner = line;
+	while (runner)
+	{
+		i = 0;
+		printf("__________\n");
+		while (runner->cmd[i])
+		{
+			printf("STR : [%s]\n", runner->cmd[i]);
+			i++;
+		}
+		runner = runner->next;
 	}
 }

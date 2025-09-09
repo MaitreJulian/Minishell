@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/09 15:09:48 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:27:49 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,15 @@ int		parsing(t_pars *line, t_data *data);
 t_cmd	*fill_struct(t_pars *luthor);
 void	syntax_error_c(char c);
 char	*ft_getenv(char *src, char **env);
-
+int		count_until_pipe(t_pars *line);
+char	**dup_args_from_list(t_pars **line, int count);
+void	free_args(char **new_line, int size);
+int		count_args(char **args);
+int		validate_line(t_pars *line);
+int		word(char c);
+int		verif_redir(char *str);
+int		verif_quote(char *str);
+int		verif_some_shi(t_pars *line);
 
 //SIGNALS
 void	handler(int sig);
@@ -138,10 +146,12 @@ bool	ft_exit(t_data *data, char *code);
 void	free_tab(char **array);
 t_cmd	*free_cmd_list(t_cmd *cmd_list);
 void	free_everything(t_data *data);
+void	free_pars(t_pars *pars_struct);
 
 //UTILS
 int		len_tab(char **tb);
 int		ft_varlen(char *str);
 void	print_env(char **envp);
+void	print_list(t_pars *list);
 
 #endif

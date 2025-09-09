@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:21:31 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/09 13:52:24 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:47:51 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,6 @@ t_pars	*split_space(t_pars *line)
 			fill_block(&tmp, runner->block, runner->type);
 		runner = runner->next;
 	}
-	while (line)
-	{
-		//Je cherche les leaks, tu dois free aussi le noeud 'line'. Fais un autre temp free line et passe a next
-		free(line->block);
-		line = line->next;
-	}
-	free(line);
+	free_pars(line);
 	return (tmp);
 }
