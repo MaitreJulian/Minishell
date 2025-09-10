@@ -6,14 +6,14 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/10 14:27:18 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:49:14 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#define _POSIX_C_SOURCE 200809L
+# define _POSIX_C_SOURCE 200809L
 
 # include "../libft/libft.h"
 # include <stdio.h>
@@ -71,11 +71,10 @@ typedef struct s_cmd
 
 typedef struct s_pars
 {
-	char	*block;
-	int 	type;
+	char			*block;
+	int				type;
 	struct s_pars	*next;
 }	t_pars;
-
 
 typedef struct s_data
 {
@@ -83,7 +82,6 @@ typedef struct s_data
 	char			**envc;
 	int				exit_status;
 }		t_data;
-
 
 //LEXING
 t_pars	*lexing(char *line, t_data *data);
@@ -113,7 +111,7 @@ int		verif_some_shi(t_pars *line);
 
 //SIGNALS
 void	handler(int sig);
-void setup_signals(void);
+void	setup_signals(void);
 
 //MAIN
 char	**copy_env_init(char **env);
