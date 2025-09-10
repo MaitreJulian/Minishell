@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   insert_node.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:53:24 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/09 18:15:28 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/10 13:42:42 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_pars	*create_node(char *str, int type)
 	new_node = malloc(sizeof(t_pars));
 	if (!new_node)
 		return (NULL);
-	printf("ALLOC NODE [%s] type=%d @%p\n", str, type, new_node);
 	new_node->block = ft_strdup(str);
 	new_node->type = type;
 	new_node->next = NULL;
