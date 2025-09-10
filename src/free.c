@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:34:02 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/09 18:32:13 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/10 13:46:21 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_cmd	*free_cmd_list(t_cmd *cmd_list)
 		free(cmd_list);
 		cmd_list = tmp;
 	}
-    return (NULL);
+	return (NULL);
 }
 
 void	free_everything(t_data *data)

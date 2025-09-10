@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/08 19:22:55 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/10 13:50:07 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ void	eof(t_data *data)
 	printf("exit\n");
 	exit(0);
 }
-void    ft_minishell(t_data *data)
+
+void	ft_minishell(t_data *data)
 {
 	t_pars	*luthor;
 	char	*input;
-	
+
 	while (1)
 	{
 		input = readline("Minishell > ");
@@ -58,6 +59,7 @@ void    ft_minishell(t_data *data)
 		free(input);
 	}
 }
+
 int	main(int ac, char **argv, char **env)
 {
 	t_data	*data;
@@ -67,5 +69,5 @@ int	main(int ac, char **argv, char **env)
 		return (1);
 	setup_signals();
 	data = init_data(env);
-	ft_minishell(data);	
+	ft_minishell(data);
 }
