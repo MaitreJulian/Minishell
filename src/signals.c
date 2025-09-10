@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 13:33:20 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/09 17:33:17 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:17:12 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	handler(int sig)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
+		g_var = 130;
 	}
 }
 
