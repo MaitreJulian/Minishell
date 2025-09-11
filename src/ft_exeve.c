@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:53:35 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/10 13:49:00 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:12:16 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ char	*get_path(char *cmd, char **env)
 		free(path_part);
 		if (access(exec, F_OK | X_OK) == 0)
 			return (exec);
-		free(exec);
+		if (cmd)
+			free(exec);
 	}
 	ft_free_tab(allpath);
 	return (cmd);

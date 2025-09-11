@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 16:43:43 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/03 15:28:28 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:11:07 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ void	clean_block(t_pars *line, t_data *data)
 	{
 		if (runner->type == RED_IN || runner->type == RED_OUT)
 			redir(&runner->block, &runner->type);
-		expander(&runner->block, runner->type, data);
+		if (runner->type == HEREDOC)
+			runner = runner->next;
+		else
+			expander(&runner->block, runner->type, data);
 		runner = runner->next;
 	}
 }
