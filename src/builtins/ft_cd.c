@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 10:06:22 by julian            #+#    #+#             */
-/*   Updated: 2025/09/09 17:31:57 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:30:46 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ static void	update_pwd(t_data *data, char *new_pwd)
 		perror(new_pwd);
 		return ;
 	}
-	if (!my_getenv("PWD", data->envc))
-		return ;
 	pwd = malloc(sizeof(char *) * 2);
 	pwd[0] = ft_strjoin("PWD=", cwd);
 	if (!pwd[0])

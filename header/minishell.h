@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/10 14:49:14 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:40:02 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void	ft_echo(char **args);
 void	ft_env(t_data *data);
 void	ft_pwd(char **env);
 char	**ft_unset(char **envc, char **v_env_del);
-bool	ft_exit(t_data *data, char *code);
+void	ft_exit(t_data *data, char *code);
 
 //FREE
 void	free_tab(char **array);

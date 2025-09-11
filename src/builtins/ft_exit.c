@@ -6,16 +6,16 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:15:50 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/11 15:11:51 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:43:48 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	ft_exit(t_data *data, char *code)
+void	ft_exit(t_data *data, char *code)
 {
-	int	i;
-	int	exit_code;
+	int			i;
+	long long	exit_code;
 
 	i = 0;
 	if (!code)
@@ -28,14 +28,15 @@ bool	ft_exit(t_data *data, char *code)
 	while (code[i] && ft_isdigit(code[i]))
 		i++;
 	if (code[i] && !ft_isdigit(code[i]))
+		printf("exit : %s: numeric argument required\n", code);
+	if (exit_code > 255 && exit_code < 9223372036854775807)
+		exit_code = exit_code % 256;
+	else
 	{
 		printf("exit : %s: numeric argument required\n", code);
-		return (false);
+		return ;
 	}
-	if (exit_code > 255)
-		exit_code = exit_code % 256;
-	free_everything (data);
+	free_everything(data);
 	printf("exit\n");
 	exit (exit_code);
-	return (true);
 }
