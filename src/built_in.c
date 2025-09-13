@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:46:48 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/11 17:40:11 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/13 12:50:50 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool	do_builtin(t_data *data, t_cmd *cmd_list)
 	if (!ft_strcmp("echo", cmd_list->cmd[0]))
 		ft_echo(cmd_list->cmd);
 	else if (!ft_strcmp("cd", cmd_list->cmd[0]))
-		ok = ft_cd(data, &cmd_list->cmd[1]);
+		cmd_list->cmd = ft_cd(data, cmd_list->cmd);
 	else if (!ft_strcmp("pwd", cmd_list->cmd[0]))
 		ft_pwd(data->envc);
 	else if (!ft_strcmp("export", cmd_list->cmd[0]))

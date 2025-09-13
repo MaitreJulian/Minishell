@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/11 17:40:02 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/13 12:52:47 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	pipe_or_not(t_data *data);
 
 //builtins
 char	**ft_export(char **envc, char **new_v);
-int		ft_cd(t_data *data, char **new_pwd);
+char	**ft_cd(t_data *data, char **new_pwd);
 void	ft_echo(char **args);
 void	ft_env(t_data *data);
 void	ft_pwd(char **env);
@@ -151,6 +151,7 @@ void	free_pars(t_pars *pars_struct);
 //UTILS
 int		len_tab(char **tb);
 int		ft_varlen(char *str);
+char	**ft_realloc_cmd(char ** cmd_list);
 void	print_env(char **envp);
 void	print_list(t_pars *list);
 

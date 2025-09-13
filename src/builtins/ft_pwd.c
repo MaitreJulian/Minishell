@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 21:27:04 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/07/10 11:15:57 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/13 10:38:07 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*search_pwd(char **env)
 	while (env[i])
 	{
 		if (strncmp(env[i], "PWD", 3) == 0)
-			return (env[i]);
+			return (env[i] + 4);
 		i++;
 	}
 	return (NULL);

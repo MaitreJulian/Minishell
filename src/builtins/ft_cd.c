@@ -3,28 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 10:06:22 by julian            #+#    #+#             */
-/*   Updated: 2025/09/11 17:30:46 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/13 12:52:11 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_oldpwd(char **env)
+char	*get_spec_pwd(char **env, int c)
 {
 	int		i;
 	char	*str;
 
 	i = 0;
-	while (env[i] && strncmp(env[i], "OLDPWD", 6) != 0)
-		i++;
-	if (env[i] && (strncmp(env[i], "OLDPWD", 6) == 0 && env[i][6] == '='))
+	while (env[i] && c)
 	{
-		str = ft_substr(env[i], 7, ft_strlen(env[i]) - 7);
-		return (str);
+		while (env[i] && strncmp(env[i], "OLDPWD", 6) != 0)
+		   i++;
+	   if (env[i] && (strncmp(env[i], "OLDPWD", 6) == 0 && env[i][6] == '='))
+	   {
+		   str = ft_substr(env[i], 7, ft_strlen(env[i]) - 7);
+		   return (str);
+	   } 
 	}
+	while (env[i] && !c)
+	{
+		while (env[i] && strncmp(env[i], "HOME", 4) != 0)
+		   i++;
+		if (env[i] && (strncmp(env[i], "HOME", 4) == 0 && env[i][4] == '='))
+	   {
+		   str = ft_substr(env[i], 5, ft_strlen(env[i]) - 5);
+		   return (str);
+	   } 
+	}   
 	return (NULL);
 }
 
@@ -91,25 +104,31 @@ static void	update_pwd(t_data *data, char *new_pwd)
 	free_tab(pwd);
 }
 
-int	ft_cd(t_data *data, char **new_pwd)
+char **ft_cd(t_data *data, char **new_pwd)
 {
 	int		res;
 
-	if (*new_pwd[0] == '-')
+	if (!new_pwd[1])
 	{
-		free(*new_pwd);
-		*new_pwd = get_oldpwd(data->envc);
+		new_pwd = ft_realloc_cmd(new_pwd);
+		free(new_pwd[1]);
+		new_pwd[1] = get_spec_pwd(data->envc, 0);
 	}
-	res = chdir(*new_pwd);
+	if (new_pwd[1][0] == '-')
+	{
+		free(new_pwd[1]);
+		new_pwd[1] = get_spec_pwd(data->envc, 1);
+	}
+	res = chdir(new_pwd[1]);
 	if (res == 0)
 	{
-		update_pwd(data, *new_pwd);
-		return (1);
+		update_pwd(data, new_pwd[1]);
+		return (new_pwd);
 	}
 	if (res == -1)
 	{
-		perror(*new_pwd);
-		return (0);
+		perror(new_pwd[1]);
+		return (new_pwd);
 	}
-	return (res);
+	return (new_pwd);
 }

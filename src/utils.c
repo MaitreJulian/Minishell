@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:22:52 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/09 16:29:59 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/13 12:43:13 by julian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,33 +49,20 @@ void	print_env(char **envp)
 	}
 }
 
-void	print_list(t_pars *list)
+char **ft_realloc_cmd(char ** cmd_list)
 {
-	t_pars	*node;
+    char **new_cmd_list;
 
-	node = list;
-	while (node != NULL)
-	{
-		printf("TYPE : [%d], STR :[%s]\n", node->type, node->block);
-		node = node->next;
-	}
-}
-
-void	new_print(t_cmd *line)
-{
-	t_cmd	*runner;
-	int		i;
-
-	runner = line;
-	while (runner)
-	{
-		i = 0;
-		printf("__________\n");
-		while (runner->cmd[i])
-		{
-			printf("STR : [%s]\n", runner->cmd[i]);
-			i++;
-		}
-		runner = runner->next;
-	}
+	if(!cmd_list)
+        return(NULL);
+    if (!cmd_list[1])
+    {
+        new_cmd_list = malloc (sizeof(char *) * 3);
+        new_cmd_list[0] = cmd_list[0];
+        new_cmd_list[1] = ft_strdup("");
+        new_cmd_list[2] = NULL;
+        free_tab(cmd_list);
+        return(new_cmd_list);
+    }
+    return(cmd_list);
 }

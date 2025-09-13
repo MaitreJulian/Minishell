@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+         #
+#    By: julian <julian@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 11:33:48 by jowoundi          #+#    #+#              #
-#    Updated: 2025/09/09 17:42:46 by jvenkata         ###   ########.fr        #
+#    Updated: 2025/09/13 12:38:57 by julian           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRCS =	main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c f
 		red_spec.c \
 		redirection.c \
 		utils.c \
+		print_utils.c \
 		signals.c
 
 # Expand with SRC_DIR prefix
