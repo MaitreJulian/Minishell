@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 10:06:22 by julian            #+#    #+#             */
-/*   Updated: 2025/09/13 12:52:11 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/15 15:16:37 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,23 @@ char	*get_spec_pwd(char **env, int c)
 	while (env[i] && c)
 	{
 		while (env[i] && strncmp(env[i], "OLDPWD", 6) != 0)
-		   i++;
-	   if (env[i] && (strncmp(env[i], "OLDPWD", 6) == 0 && env[i][6] == '='))
-	   {
-		   str = ft_substr(env[i], 7, ft_strlen(env[i]) - 7);
-		   return (str);
-	   } 
+			i++;
+		if (env[i] && (strncmp(env[i], "OLDPWD", 6) == 0 && env[i][6] == '='))
+		{
+			str = ft_substr(env[i], 7, ft_strlen(env[i]) - 7);
+			return (str);
+		}
 	}
 	while (env[i] && !c)
 	{
 		while (env[i] && strncmp(env[i], "HOME", 4) != 0)
-		   i++;
+			i++;
 		if (env[i] && (strncmp(env[i], "HOME", 4) == 0 && env[i][4] == '='))
-	   {
-		   str = ft_substr(env[i], 5, ft_strlen(env[i]) - 5);
-		   return (str);
-	   } 
-	}   
+		{
+			str = ft_substr(env[i], 5, ft_strlen(env[i]) - 5);
+			return (str);
+		}
+	}
 	return (NULL);
 }
 
@@ -104,7 +104,7 @@ static void	update_pwd(t_data *data, char *new_pwd)
 	free_tab(pwd);
 }
 
-char **ft_cd(t_data *data, char **new_pwd)
+char	**ft_cd(t_data *data, char **new_pwd)
 {
 	int		res;
 

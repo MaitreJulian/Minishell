@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:22:52 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/13 12:43:13 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/15 16:45:17 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,20 @@ void	print_env(char **envp)
 	}
 }
 
-char **ft_realloc_cmd(char ** cmd_list)
+char	**ft_realloc_cmd(char **cmd_list)
 {
-    char **new_cmd_list;
+	char	**new_cmd_list;
 
-	if(!cmd_list)
-        return(NULL);
-    if (!cmd_list[1])
-    {
-        new_cmd_list = malloc (sizeof(char *) * 3);
-        new_cmd_list[0] = cmd_list[0];
-        new_cmd_list[1] = ft_strdup("");
-        new_cmd_list[2] = NULL;
-        free_tab(cmd_list);
-        return(new_cmd_list);
-    }
-    return(cmd_list);
+	if (!cmd_list)
+		return (NULL);
+	if (!cmd_list[1])
+	{
+		new_cmd_list = malloc (sizeof(char *) * 3);
+		new_cmd_list[0] = ft_strdup(cmd_list[0]);
+		new_cmd_list[1] = ft_strdup("");
+		new_cmd_list[2] = NULL;
+		free_tab(cmd_list);
+		return (new_cmd_list);
+	}
+	return (cmd_list);
 }
