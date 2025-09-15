@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/13 12:52:47 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/15 18:15:41 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void	free_pars(t_pars *pars_struct);
 //UTILS
 int		len_tab(char **tb);
 int		ft_varlen(char *str);
-char	**ft_realloc_cmd(char ** cmd_list);
+char	**ft_realloc_cmd(char **cmd_list);
 void	print_env(char **envp);
 void	print_list(t_pars *list);
 
