@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:49:17 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/09 16:28:33 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/16 08:47:32 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*check_var(char *str, int i, t_data *data)
 	if (str[i] == '?')
 		return (ft_itoa(data->exit_status));
 	while (str[i] && ft_isspace(str[i]) == 0 && \
-	is_quote(str[i]) == 0 && str[i] != '$')
+	is_quote(str[i]) == 0 && str[i] != '$' && str[i] != '|')
 		var = ft_realloc(var, str[i++]);
 	if (var == NULL)
 		return (ft_strdup("$"));
@@ -60,7 +60,7 @@ int	handle_double_quotes(char **str, int i, char **new_line, t_data *data)
 			*new_line = ft_strjoin(*new_line, var);
 			i++;
 			while ((*str)[i] && ft_isspace((*str)[i]) == 0 && \
-				is_quote((*str)[i]) == 0 && (*str)[i] != '$')
+			is_quote((*str)[i]) == 0 && (*str)[i] != '$' && (*str)[i] != '|')
 				i++;
 		}
 		else
@@ -82,7 +82,7 @@ int	handle_dollar(char **str, int i, char **new_line, t_data *data)
 	*new_line = ft_strjoin(*new_line, var);
 	i++;
 	while ((*str)[i] && ft_isspace((*str)[i]) == 0 && \
-		is_quote((*str)[i]) == 0 && (*str)[i] != '$')
+		is_quote((*str)[i]) == 0 && (*str)[i] != '$' && (*str)[i] != '|')
 		i++;
 	return (i);
 }
