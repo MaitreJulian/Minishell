@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exeve.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:53:35 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/11 17:12:16 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/16 11:15:28 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,11 @@ void	ft_execve(char **cmd, char **env)
 	path = get_path(cmd[0], env);
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
-	if (!path)
+	if (!path && cmd[0])
 	{
 		printf("%s: No such file or directory\n", cmd[0]);
 	}
-	else if (execve(path, cmd, env) == -1)
+	else if (execve(path, cmd, env) == -1 && cmd[0])
 	{
 		perror("execve failed");
 		exit(127);
