@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exportc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:12:49 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/13 11:40:53 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/16 11:58:05 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ char	**new_env(char **nenv, char *new_v, int len)
 	i = -1;
 	while (nenv[++i])
 	{
-		if ((strncmp(nenv[i], new_v, len) == 0 && nenv[i][len] == '=')
-            || strcmp(new_v, nenv[i]) == 0)
+		if ((strncmp(nenv[i], new_v, len) == 0 && nenv[i][len] == '=') \
+			|| strcmp(new_v, nenv[i]) == 0)
 		{
 			temp = ft_strdup(new_v);
 			free(nenv[i]);

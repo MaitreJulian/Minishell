@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:15:50 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/16 11:39:30 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/16 11:59:17 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void exit2(t_data *data, int exit_code)
+void	exit2(t_data *data, int exit_code)
 {
 	free_everything(data);
 	printf("exit\n");

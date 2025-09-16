@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 10:06:22 by julian            #+#    #+#             */
-/*   Updated: 2025/09/16 11:19:14 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/16 12:01:34 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ char	**ft_cd(t_data *data, char **new_pwd)
 {
 	int		res;
 
-	if (!new_pwd[1] || ft_strcmp(new_pwd[1], "~") == 0 || ft_strcmp(new_pwd[1], "~/") == 0)
+	if (!new_pwd[1] || ft_strcmp(new_pwd[1], "~") == 0 || \
+		ft_strcmp(new_pwd[1], "~/") == 0)
 	{
 		new_pwd = ft_realloc_cmd(new_pwd);
 		free(new_pwd[1]);
@@ -121,10 +122,7 @@ char	**ft_cd(t_data *data, char **new_pwd)
 	}
 	res = chdir(new_pwd[1]);
 	if (res == 0)
-	{
-		update_pwd(data, new_pwd[1]);
-		return (new_pwd);
-	}
+		return (update_pwd(data, new_pwd[1]), new_pwd);
 	if (res == -1)
 	{
 		perror(new_pwd[1]);
