@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:30:18 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/09 16:49:34 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/16 15:12:15 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int	size_env(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '=')
+	while (str[i] && str[i] != '=')
 		i++;
+	if ((size_t)i == ft_strlen(str) && str[i - 1] != '=')
+		return (-1);
 	return (i);
 }
 
@@ -51,6 +53,8 @@ char	*ft_getenv(char *src, char **env)
 	while (env[i])
 	{
 		var_len = size_env(env[i]);
+		if (var_len == -1)
+			return (NULL);
 		if (ft_strncmp(env[i], src, var_len) == 0)
 			break ;
 		i++;
