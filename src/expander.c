@@ -5,113 +5,67 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/07 15:49:17 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/16 08:47:32 by jowoundi         ###   ########.fr       */
+/*   Created: 2025/09/03 14:30:18 by jowoundi          #+#    #+#             */
+/*   Updated: 2025/09/16 15:11:05 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*check_var(char *str, int i, t_data *data)
+int	size_env(char *str)
 {
-	char	*var;
-	char	*value;
-
-	i++;
-	var = NULL;
-	value = NULL;
-	if (str[i] == '?')
-		return (ft_itoa(data->exit_status));
-	while (str[i] && ft_isspace(str[i]) == 0 && \
-	is_quote(str[i]) == 0 && str[i] != '$' && str[i] != '|')
-		var = ft_realloc(var, str[i++]);
-	if (var == NULL)
-		return (ft_strdup("$"));
-	if (ft_getenv(var, data->envc) != NULL)
-		value = ft_strdup(ft_getenv(var, data->envc));
-	return (value);
-}
-
-int	handle_single_quotes(char **str, int i, char **new_line)
-{
-	*new_line = ft_realloc(*new_line, (*str)[i]);
-	i++;
-	while ((*str)[i] && (*str)[i] != '\'')
-	{
-		*new_line = ft_realloc(*new_line, (*str)[i]);
-		i++;
-	}
-	return (i);
-}
-
-int	handle_double_quotes(char **str, int i, char **new_line, t_data *data)
-{
-	char	*var;
-
-	*new_line = ft_realloc(*new_line, (*str)[i]);
-	i++;
-	while ((*str)[i] && (*str)[i] != '"')
-	{
-		if ((*str)[i] && (*str)[i] == '$')
-		{
-			var = check_var(*str, i, data);
-			if (!var)
-				var = ft_strdup("");
-			*new_line = ft_strjoin(*new_line, var);
-			i++;
-			while ((*str)[i] && ft_isspace((*str)[i]) == 0 && \
-			is_quote((*str)[i]) == 0 && (*str)[i] != '$' && (*str)[i] != '|')
-				i++;
-		}
-		else
-		{
-			*new_line = ft_realloc(*new_line, (*str)[i]);
-			i++;
-		}
-	}
-	return (i);
-}
-
-int	handle_dollar(char **str, int i, char **new_line, t_data *data)
-{
-	char	*var;
-
-	var = check_var(*str, i, data);
-	if (!var)
-		var = ft_strdup("");
-	*new_line = ft_strjoin(*new_line, var);
-	i++;
-	while ((*str)[i] && ft_isspace((*str)[i]) == 0 && \
-		is_quote((*str)[i]) == 0 && (*str)[i] != '$' && (*str)[i] != '|')
-		i++;
-	return (i);
-}
-
-void	expander(char **str, int type, t_data *data)
-{
-	char	*new_line;
-	int		i;
+	int	i;
 
 	i = 0;
-	new_line = NULL;
-	if (type == WORD)
+	while (str[i] && str[i] != '=')
+		i++;
+	if ((size_t)i == ft_strlen(str) && str[i - 1] != '=')
+		return (-1);
+	return (i);
+}
+
+char	*copy(char *str)
+{
+	int		i;
+	char	*var;
+
+	i = 0;
+	var = NULL;
+	while (str[i] != '=')
+		i++;
+	i++;
+	while (str[i])
+		var = ft_realloc(var, str[i++]);
+	return (var);
+}
+
+char	*ft_getenv(char *src, char **env)
+{
+	int		i;
+	int		len;
+	int		var_len;
+	char	*var;
+
+	i = 0;
+	len = 0;
+	while (env[len])
+		len++;
+	while (env[i])
 	{
-		while ((*str)[i])
-		{
-			if ((*str)[i] == '\'')
-				i = handle_single_quotes(str, i, &new_line);
-			else if ((*str)[i] == '"')
-				i = handle_double_quotes(str, i, &new_line, data);
-			else if ((*str)[i] == '$')
-				i = handle_dollar(str, i, &new_line, data);
-			else
-			{
-				new_line = ft_realloc(new_line, (*str)[i]);
-				i++;
-			}
-		}
-		free(*str);
-		*str = ft_strdup(new_line);
-		free(new_line);
+		var_len = size_env(env[i]);
+		if (var_len == -1)
+			return (NULL);
+		if (ft_strncmp(env[i], src, var_len) == 0)
+			break ;
+		i++;
 	}
+	if (i == len)
+	{
+		var_len = size_env(env[i - 1]);
+		if (ft_strncmp(env[i - 1], src, var_len) != 0)
+			return (NULL);
+		i--;
+	}
+	var = copy(env[i]);
+	return (var);
 }
