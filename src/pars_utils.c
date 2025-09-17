@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 14:49:53 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/15 18:15:17 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/17 15:07:28 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	validate_line(t_pars *line)
 	t_pars	*runner;
 
 	runner = line;
+	if (!line)
+		return (1);
 	if (runner->type == PIPE)
 		return (syntax_error_c(2, 0, runner->block), 0);
 	while (runner != NULL)

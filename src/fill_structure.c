@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:01:33 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/15 16:38:30 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/17 15:06:47 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	size_struct(t_cmd *f_struct)
 	int		size_cmd;
 
 	size_cmd = 0;
+	if (!f_struct)
+		return (0);
 	while (f_struct->cmd[size_cmd])
 		size_cmd++;
 	if (size_cmd == 1 && ft_strncmp(f_struct->cmd[0], " ", 1) == 0)
