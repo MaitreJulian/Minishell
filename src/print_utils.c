@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 11:56:10 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/16 11:56:16 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/21 19:00:29 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_list(t_pars *list)
 	}
 }
 
-void	new_print(t_cmd *line)
+void	print_cmdlist(t_cmd *line)
 {
 	t_cmd	*runner;
 	int		i;
@@ -41,4 +41,16 @@ void	new_print(t_cmd *line)
 		}
 		runner = runner->next;
 	}
+}
+
+void	print_tab(char **cmd)
+{
+	int i = 0;
+	
+	while (cmd[i])
+	{
+		printf("cmd[%d] : %s ", i, cmd[i]);
+		i++;
+	}
+	printf("\n");
 }

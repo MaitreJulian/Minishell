@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exportc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:12:49 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/16 11:58:05 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/21 15:25:29 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ char	**new_env(char **nenv, char *new_v, int len)
 	i = -1;
 	while (nenv[++i])
 	{
-		if ((strncmp(nenv[i], new_v, len) == 0 && nenv[i][len] == '=') \
-			|| strcmp(new_v, nenv[i]) == 0)
+		if (strncmp(nenv[i], new_v, len) == 0 && (nenv[i][len] == '='
+			|| nenv[i][len] == '\0'))
 		{
 			temp = ft_strdup(new_v);
 			free(nenv[i]);
@@ -88,7 +88,7 @@ char	**new_env(char **nenv, char *new_v, int len)
 char	**ft_export(char **envc, char **new_v)
 {
 	int		len;
-
+	
 	if (!(*new_v))
 	{
 		print_env(envc);
@@ -98,7 +98,7 @@ char	**ft_export(char **envc, char **new_v)
 	{
 		if (!is_valid_identifier(*new_v))
 		{
-			printf("export: '%s not a valid identifier\n", *new_v);
+			printf("export: '%s' not a valid identifier\n", *new_v);
 			return (envc);
 		}
 		len = ft_varlen(*new_v);

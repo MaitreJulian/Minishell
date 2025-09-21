@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:46:48 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/13 12:50:50 by julian           ###   ########.fr       */
+/*   Updated: 2025/09/21 19:07:17 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ bool	do_builtin(t_data *data, t_cmd *cmd_list)
 	else if (!ft_strcmp("unset", cmd_list->cmd[0]))
 		data->envc = ft_unset(data->envc, cmd_list->cmd + 1);
 	else if (!ft_strcmp("env", cmd_list->cmd[0]))
-		ft_env(data);
+		ft_env(data, cmd_list);
 	else if (!ft_strcmp("exit", cmd_list->cmd[0]))
-		ft_exit(data, cmd_list->cmd [1]);
+		ft_exit(data, cmd_list->cmd);
 	if (!ok)
 		return (false);
 	return (true);

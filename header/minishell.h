@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/15 18:15:41 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/21 19:05:47 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,10 +137,10 @@ void	pipe_or_not(t_data *data);
 char	**ft_export(char **envc, char **new_v);
 char	**ft_cd(t_data *data, char **new_pwd);
 void	ft_echo(char **args);
-void	ft_env(t_data *data);
+void	ft_env(t_data *data, t_cmd *cmd_list);
 void	ft_pwd(char **env);
 char	**ft_unset(char **envc, char **v_env_del);
-void	ft_exit(t_data *data, char *code);
+void	ft_exit(t_data *data, char **code);
 
 //FREE
 void	free_tab(char **array);
@@ -154,5 +154,7 @@ int		ft_varlen(char *str);
 char	**ft_realloc_cmd(char **cmd_list);
 void	print_env(char **envp);
 void	print_list(t_pars *list);
+void	print_cmdlist(t_cmd *line);
+void	print_tab(char **cmd);
 
 #endif
