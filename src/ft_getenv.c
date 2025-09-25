@@ -6,11 +6,33 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:30:18 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/16 15:12:15 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/25 18:09:00 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ft_strncmp_mini(char *s1, char *s2, size_t n)
+{
+	size_t	x;
+	size_t	len;
+
+	x = 0;
+	len = ft_strlen(s2);
+	if (n == 0)
+		return (0);
+	while (s1[x] == s2[x] && s1[x] != '\0' && s2[x] != '\0' && (x < n - 1))
+		x++;
+	if (!s1[x] && !s2[x])
+		return (0);
+	if (!s1[x])
+		return (-1);
+	if (!s2[x])
+		return (1);
+	if (x != len - 1)
+		return (-1);
+	return ((unsigned char)(s1[x]) - (unsigned char)(s2[x]));
+}
 
 int	size_env(char *str)
 {
@@ -55,14 +77,14 @@ char	*ft_getenv(char *src, char **env)
 		var_len = size_env(env[i]);
 		if (var_len == -1)
 			return (NULL);
-		if (ft_strncmp(env[i], src, var_len) == 0)
+		if (ft_strncmp_mini(env[i], src, var_len) == 0)
 			break ;
 		i++;
 	}
 	if (i == len)
 	{
 		var_len = size_env(env[i - 1]);
-		if (ft_strncmp(env[i - 1], src, var_len) != 0)
+		if (ft_strncmp_mini(env[i - 1], src, var_len) != 0)
 			return (NULL);
 		i--;
 	}

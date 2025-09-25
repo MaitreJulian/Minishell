@@ -6,7 +6,7 @@
       "type": "cppdbg",
       "request": "launch",
       "args": [],
-      "stopAtEntry": false,
+      "stopAtEntry": true,
       "externalConsole": false,
       "cwd": "/home/jowoundi/minishell/merge/Minishell/src",
       "program": "/home/jowoundi/minishell/merge/Minishell/minishell",

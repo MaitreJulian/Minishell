@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:49:17 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/16 15:11:58 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:40:29 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*check_var(char *str, int i, t_data *data)
 	value = NULL;
 	if (str[i] == '?')
 		return (ft_itoa(data->exit_status));
-	while (str[i] && ft_isspace(str[i]) == 0 && \
+	while (str[i] && ft_isspace(str[i]) == 0 && str[i] != '=' && \
 	is_quote(str[i]) == 0 && str[i] != '$' && str[i] != '|')
 		var = ft_realloc(var, str[i++]);
 	if (var == NULL)
@@ -54,14 +54,19 @@ int	handle_double_quotes(char **str, int i, char **new_line, t_data *data)
 	{
 		if ((*str)[i] && (*str)[i] == '$')
 		{
-			var = check_var(*str, i, data);
-			if (!var)
-				var = ft_strdup("");
-			*new_line = ft_strjoin(*new_line, var);
-			i++;
-			while ((*str)[i] && ft_isspace((*str)[i]) == 0 && \
-			is_quote((*str)[i]) == 0 && (*str)[i] != '$' && (*str)[i] != '|')
+			if (ft_isdigit((*str)[i + 1]) == 1)
+				i += 2;
+			else
+			{
+				var = check_var(*str, i, data);
+				if (!var)
+					var = ft_strdup("");
+				*new_line = ft_strjoin(*new_line, var);
 				i++;
+				while ((*str)[i] && ft_isspace((*str)[i]) == 0 && (*str)[i] != '=' \
+				&& is_quote((*str)[i]) == 0 && (*str)[i] != '$' && (*str)[i] != '|')
+					i++;
+			}
 		}
 		else
 		{
@@ -76,15 +81,20 @@ int	handle_dollar(char **str, int i, char **new_line, t_data *data)
 {
 	char	*var;
 
-	var = check_var(*str, i, data);
-	if (!var)
-		var = ft_strdup("");
-	*new_line = ft_strjoin(*new_line, var);
-	i++;
-	while ((*str)[i] && ft_isspace((*str)[i]) == 0 && \
-		is_quote((*str)[i]) == 0 && (*str)[i] != '$' && (*str)[i] != '|')
+	if (ft_isdigit((*str)[i + 1]) == 1)
+		return (i += 2);
+	else
+	{
+		var = check_var(*str, i, data);
+		if (!var)
+			var = ft_strdup("");
+		*new_line = ft_strjoin(*new_line, var);
 		i++;
-	return (i);
+		while ((*str)[i] && ft_isspace((*str)[i]) == 0 && (*str)[i] != '=' &&\
+			is_quote((*str)[i]) == 0 && (*str)[i] != '$' && (*str)[i] != '|')
+			i++;
+		return (i);
+	}
 }
 
 void	expander(char **str, int type, t_data *data)
