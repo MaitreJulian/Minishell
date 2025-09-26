@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:13:40 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/08 20:53:13 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/25 13:57:31 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**copy_env_init(char **envp)
 		return (NULL);
 	while (count < i)
 	{
-		env_copy[count] = strdup(envp[count]);
+		env_copy[count] = ft_strdup(envp[count]);
 		if (!env_copy[count])
 		{
 			free_tab(env_copy);
