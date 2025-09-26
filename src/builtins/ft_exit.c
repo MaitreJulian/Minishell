@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:15:50 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/21 17:49:20 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/26 13:23:52 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-int check_exit_var(char *code)
+
+int	check_exit_var(char *code)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (code[i] == 32 || (code[i] >= 9 && code[i] <= 13))
 		i++;
 	if (code[i] == 43 || code[i] == 45)
 		i++;
-	while (code[i]) 
+	while (code[i])
 	{
 		if (!ft_isdigit(code[i]))
 			return (0);

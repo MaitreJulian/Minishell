@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 10:06:22 by julian            #+#    #+#             */
-/*   Updated: 2025/09/21 17:13:41 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/26 13:22:58 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,9 @@ static void	update_pwd(t_data *data, char *new_pwd)
 
 char	**ft_cd(t_data *data, char **new_pwd)
 {
-	int		res;
- 	if (data->cmd_list->cmd[2])
+	int	res;
+
+	if (data->cmd_list->cmd[2])
 		return (printf("cd : too many arguments\n"), new_pwd);
 	if (!new_pwd[1] || ft_strcmp(new_pwd[1], "~") == 0 || \
 		ft_strcmp(new_pwd[1], "~/") == 0)
