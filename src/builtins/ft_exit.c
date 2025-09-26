@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:15:50 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/26 13:23:52 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/26 15:44:51 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_exit(t_data *data, char **code)
 		return ;
 	}
 	if (!code[1])
-		exit2(data, 0);
+		exit2(data, data->exit_status);
 	exit_code = ft_atoi(code[1]);
 	if (!check_exit_var(code[1]))
 	{
