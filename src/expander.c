@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:49:17 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/25 17:40:29 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/26 12:47:24 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,12 @@ int	handle_double_quotes(char **str, int i, char **new_line, t_data *data)
 {
 	char	*var;
 
-	*new_line = ft_realloc(*new_line, (*str)[i]);
-	i++;
+	*new_line = ft_realloc(*new_line, (*str)[i++]);
 	while ((*str)[i] && (*str)[i] != '"')
 	{
-		if ((*str)[i] && (*str)[i] == '$')
+		if ((*str)[i] == '$')
 		{
-			if (ft_isdigit((*str)[i + 1]) == 1)
+			if (ft_isdigit((*str)[i + 1]))
 				i += 2;
 			else
 			{
@@ -63,16 +62,13 @@ int	handle_double_quotes(char **str, int i, char **new_line, t_data *data)
 					var = ft_strdup("");
 				*new_line = ft_strjoin(*new_line, var);
 				i++;
-				while ((*str)[i] && ft_isspace((*str)[i]) == 0 && (*str)[i] != '=' \
-				&& is_quote((*str)[i]) == 0 && (*str)[i] != '$' && (*str)[i] != '|')
+				while ((*str)[i] && !ft_isspace((*str)[i]) && (*str)[i] != '='
+				&& !is_quote((*str)[i]) && (*str)[i] != '$' && (*str)[i] != '|')
 					i++;
 			}
 		}
 		else
-		{
-			*new_line = ft_realloc(*new_line, (*str)[i]);
-			i++;
-		}
+			*new_line = ft_realloc(*new_line, (*str)[i++]);
 	}
 	return (i);
 }
@@ -90,8 +86,8 @@ int	handle_dollar(char **str, int i, char **new_line, t_data *data)
 			var = ft_strdup("");
 		*new_line = ft_strjoin(*new_line, var);
 		i++;
-		while ((*str)[i] && ft_isspace((*str)[i]) == 0 && (*str)[i] != '=' &&\
-			is_quote((*str)[i]) == 0 && (*str)[i] != '$' && (*str)[i] != '|')
+		while ((*str)[i] && ft_isspace((*str)[i]) == 0 && (*str)[i] != '=' \
+		&& is_quote((*str)[i]) == 0 && (*str)[i] != '$' && (*str)[i] != '|')
 			i++;
 		return (i);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 11:56:10 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/21 19:00:29 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/26 12:35:34 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ void	print_cmdlist(t_cmd *line)
 
 void	print_tab(char **cmd)
 {
-	int i = 0;
-	
+	int	i;
+
+	i = 0;
 	while (cmd[i])
 	{
 		printf("cmd[%d] : %s ", i, cmd[i]);

@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:30:18 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/25 18:09:00 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/26 12:41:34 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ char	*ft_getenv(char *src, char **env)
 	int		var_len;
 	char	*var;
 
-	i = 0;
 	len = 0;
 	while (env[len])
 		len++;
-	while (env[i])
+	i = 0;
+	while (i < len)
 	{
 		var_len = size_env(env[i]);
 		if (var_len == -1)
@@ -81,13 +81,8 @@ char	*ft_getenv(char *src, char **env)
 			break ;
 		i++;
 	}
-	if (i == len)
-	{
-		var_len = size_env(env[i - 1]);
-		if (ft_strncmp_mini(env[i - 1], src, var_len) != 0)
-			return (NULL);
-		i--;
-	}
+	if (i == len || ft_strncmp_mini(env[i], src, size_env(env[i])) != 0)
+		return (NULL);
 	var = copy(env[i]);
 	return (var);
 }
