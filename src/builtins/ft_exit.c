@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:15:50 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/27 10:57:24 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/27 18:08:22 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ int	check_exit_var(char *code)
 	while (code[i])
 	{
 		if (!ft_isdigit(code[i]))
-		{
-			printf("exit : %s: numeric argument required\n", code);
 			return (0);
-		}
 		i++;
 	}
 	return (1);
@@ -46,7 +43,7 @@ void	ft_exit(t_data *data, char **code)
 	long long	exit_code;
 
 	i = 0;
-	if (code[1] && code[2]) 
+	if (code[1] && code[2])
 	{
 		printf("exit : too many arguments\n");
 		data->exit_status = 1;
@@ -55,15 +52,13 @@ void	ft_exit(t_data *data, char **code)
 	if (!code[1])
 		exit2(data, data->exit_status);
 	exit_code = ft_atoi(code[1]);
-	if (!check_exit_var(code[1]))	
-		return ;
-	if (exit_code > 255 && exit_code < 9223372036854775807)
-		exit_code = exit_code % 256;
-	else if (exit_code > 9223372036854775807)
+	if (!check_exit_var(code[1]) || exit_code > 9223372036854775807)
 	{
 		printf("exit : %s: numeric argument required\n", code[1]);
 		data->exit_status = 2;
 		return ;
 	}
+	if (exit_code > 255 && exit_code < 9223372036854775807)
+		exit_code = exit_code % 256;
 	exit2(data, exit_code);
 }

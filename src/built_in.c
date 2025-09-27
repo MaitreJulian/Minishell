@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:46:48 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/27 10:44:13 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/27 18:16:13 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	do_builtin(t_data *data, t_cmd *cmd_list)
 
 	ok = true;
 	if (!ft_strcmp("echo", cmd_list->cmd[0]))
-		ft_echo(cmd_list->cmd);
+		ft_echo(cmd_list->cmd, data);
 	else if (!ft_strcmp("cd", cmd_list->cmd[0]))
 		cmd_list->cmd = ft_cd(data, cmd_list->cmd);
 	else if (!ft_strcmp("pwd", cmd_list->cmd[0]))

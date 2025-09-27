@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 11:56:10 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/27 10:49:18 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/27 18:35:40 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	print_tab(char **cmd)
 	i = 0;
 	while (cmd[i])
 	{
-		printf("cmd[%d] : %s ", i, cmd[i]);
+		printf("cmd[%d] : %s\n", i, cmd[i]);
 		i++;
 	}
 	printf("\n");

@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/27 11:23:43 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/27 18:16:29 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	pipe_or_not(t_data *data);
 //builtins
 char	**ft_export(char **envc, char **new_v, t_data *data);
 char	**ft_cd(t_data *data, char **new_pwd);
-void	ft_echo(char **args);
+void	ft_echo(char **args, t_data *data);
 void	ft_env(t_data *data, t_cmd *cmd_list);
 void	ft_pwd(char **env);
 char	**ft_unset(char **envc, char **v_env_del);

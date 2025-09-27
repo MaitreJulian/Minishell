@@ -6,13 +6,13 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:35:14 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/26 19:52:23 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/27 18:15:09 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_echo(char **args)
+void	ft_echo(char **args, t_data *data)
 {
 	int		i;
 	bool	backsn;
@@ -33,4 +33,5 @@ void	ft_echo(char **args)
 	}
 	if (backsn)
 		printf("\n");
+	data->exit_status = 0;
 }
