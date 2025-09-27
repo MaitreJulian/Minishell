@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:35:14 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/26 15:40:42 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/26 19:52:23 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_echo(char **args)
 
 	backsn = true;
 	i = 1;
-	if (args[i] && strncmp(args[i], "-n", 3) == 0 && args[i][3] == '\0')
+	if (args[i] && strncmp(args[i], "-n", 3) == 0 && args[i][2] == '\0')
 	{
 		backsn = false;
 		i++;

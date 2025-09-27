@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exportc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:12:49 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/26 13:24:04 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/27 10:43:55 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	**new_env(char **nenv, char *new_v, int len)
 	return (nenv);
 }
 
-char	**ft_export(char **envc, char **new_v)
+char	**ft_export(char **envc, char **new_v, t_data *data)
 {
 	int		len;
 
@@ -99,6 +99,7 @@ char	**ft_export(char **envc, char **new_v)
 		if (!is_valid_identifier(*new_v))
 		{
 			printf("export: '%s' not a valid identifier\n", *new_v);
+			data->exit_status = 1;
 			return (envc);
 		}
 		len = ft_varlen(*new_v);

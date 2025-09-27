@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/10 14:49:01 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/27 11:20:39 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ t_data	*init_data(char **env)
 	if (!data)
 		return (NULL);
 	data->cmd_list = NULL;
-	data->envc = copy_env_init(env);
+	data->exit_status = 0;
+	data->envc = copy_env_init(env, data);
 	return (data);
 }
 
@@ -54,7 +55,7 @@ void	ft_minishell(t_data *data)
 		check_gvar(data);
 		if (!input)
 			eof(data);
-		if (input[0] == '\0')
+		if (input[0] == '\0' || only_space(input))
 		{
 			free(input);
 			continue ;

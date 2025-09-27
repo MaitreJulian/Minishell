@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 11:56:10 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/26 12:35:34 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/27 10:49:18 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,11 @@ void	print_tab(char **cmd)
 		i++;
 	}
 	printf("\n");
+}
+
+void	print_error(t_data *data)
+{
+	printf("cd : too many arguments\n");
+	data->exit_status = 1;
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/21 19:05:47 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/27 11:23:43 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	handler(int sig);
 void	setup_signals(void);
 
 //MAIN
-char	**copy_env_init(char **env);
+char	**copy_env_init(char **env, t_data *data);
 //t_cmd	*make_cmd_list(char *s, t_data *data);
 bool	red_heredoc(t_cmd **cmd_node, int i);
 bool	red_out(t_cmd **cmd_node, int i);;
@@ -134,7 +134,7 @@ void	ft_exec_builtin(t_data *data, t_cmd *cmd_list);
 void	pipe_or_not(t_data *data);
 
 //builtins
-char	**ft_export(char **envc, char **new_v);
+char	**ft_export(char **envc, char **new_v, t_data *data);
 char	**ft_cd(t_data *data, char **new_pwd);
 void	ft_echo(char **args);
 void	ft_env(t_data *data, t_cmd *cmd_list);
@@ -156,5 +156,7 @@ void	print_env(char **envp);
 void	print_list(t_pars *list);
 void	print_cmdlist(t_cmd *line);
 void	print_tab(char **cmd);
+void	print_error(t_data *data);
+int		only_space(char *input);
 
 #endif

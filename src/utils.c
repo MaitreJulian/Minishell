@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:22:52 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/15 16:45:17 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/27 11:30:40 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,20 @@ char	**ft_realloc_cmd(char **cmd_list)
 		return (new_cmd_list);
 	}
 	return (cmd_list);
+}
+
+int	only_space(char *input)
+{
+	int	i;
+
+	i = 0;
+	while (input && input[i])
+	{
+		if (input[i] != ' ')
+			break ;
+		i++;
+	}
+	if (input[i] != '\0')
+		return (0);
+	return (1);
 }

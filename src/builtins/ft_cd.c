@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 10:06:22 by julian            #+#    #+#             */
-/*   Updated: 2025/09/26 13:22:58 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/09/27 10:53:55 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	update_old(t_data *data, char **old_var_env, int i)
 		if (!old_var_env[0])
 			return ;
 		old_var_env[1] = NULL;
-		data->envc = ft_export(data->envc, old_var_env);
+		data->envc = ft_export(data->envc, old_var_env, data);
 	}
 }
 
@@ -100,7 +100,7 @@ static void	update_pwd(t_data *data, char *new_pwd)
 	if (!pwd[0])
 		return ;
 	pwd[1] = NULL;
-	data->envc = ft_export(data->envc, pwd);
+	data->envc = ft_export(data->envc, pwd, data);
 	free_tab(pwd);
 }
 
@@ -108,8 +108,8 @@ char	**ft_cd(t_data *data, char **new_pwd)
 {
 	int	res;
 
-	if (data->cmd_list->cmd[2])
-		return (printf("cd : too many arguments\n"), new_pwd);
+	if (data->cmd_list->cmd[1] && data->cmd_list->cmd[2])
+		return (print_error(data), new_pwd);
 	if (!new_pwd[1] || ft_strcmp(new_pwd[1], "~") == 0 || \
 		ft_strcmp(new_pwd[1], "~/") == 0)
 	{
@@ -128,7 +128,7 @@ char	**ft_cd(t_data *data, char **new_pwd)
 	if (res == -1)
 	{
 		perror(new_pwd[1]);
-		return (new_pwd);
+		return (data->exit_status = 1, new_pwd);
 	}
 	return (new_pwd);
 }

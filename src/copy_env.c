@@ -6,13 +6,13 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:13:40 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/25 13:57:31 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/09/27 10:50:49 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**add_shlvl(char **env)
+char	**add_shlvl(char **env, t_data *data)
 {
 	int		i;
 	int		lvl;
@@ -31,13 +31,13 @@ char	**add_shlvl(char **env)
 		temp[0] = ft_strjoin("SHLVL=", nb);
 		temp[1] = NULL;
 		free(nb);
-		env = ft_export(env, temp);
+		env = ft_export(env, temp, data);
 		free_tab(temp);
 	}
 	return (env);
 }
 
-char	**copy_env_init(char **envp)
+char	**copy_env_init(char **envp, t_data *data)
 {
 	int		i;
 	int		count;
@@ -61,6 +61,6 @@ char	**copy_env_init(char **envp)
 		count++;
 	}
 	env_copy[i] = NULL;
-	env_copy = add_shlvl(env_copy);
+	env_copy = add_shlvl(env_copy, data);
 	return (env_copy);
 }
