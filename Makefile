@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: julian <julian@student.42.fr>              +#+  +:+       +#+         #
+#    By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 11:33:48 by jowoundi          #+#    #+#              #
-#    Updated: 2025/09/13 12:38:57 by julian           ###   ########.fr        #
+#    Updated: 2025/09/29 13:38:04 by jowoundi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ OBJ_DIR = obj
 # Source files (relative to SRC_DIR)
 SRCS =	main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c fill_structure.c \
 		ft_getenv.c \
+		expander_utils.c \
 		split_space.c \
 		fill_struct_utils.c \
 		pars_utils.c \
