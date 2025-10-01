@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:53:24 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/10 13:42:42 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/10/01 13:31:33 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	fill_block(t_pars **data, char *str, int type)
 	t_pars	*mew_node;
 	t_pars	*temp;
 
+	if (type == ESPACE)
+		return ;
 	mew_node = create_node(str, type);
 	if (!mew_node)
 		return ;

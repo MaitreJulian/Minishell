@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:48:34 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/08 17:07:14 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/10/01 13:32:28 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ t_pars	*lexing(char *line, t_data *data)
 	new_line = identifier(line);
 	clean_block(new_line, data);
 	new_line = split_space(new_line);
+	print_list(new_line);
 	return (new_line);
 }
