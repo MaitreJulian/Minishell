@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 16:43:43 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/11 17:11:07 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/10/04 10:49:10 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	clean_block(t_pars *line, t_data *data)
 	{
 		if (runner->type == RED_IN || runner->type == RED_OUT)
 			redir(&runner->block, &runner->type);
-		if (runner->type == HEREDOC)
+		if (runner->type == HEREDOC && runner->next)
 			runner = runner->next;
 		else
 			expander(&runner->block, runner->type, data);
