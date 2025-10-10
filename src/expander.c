@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 15:49:17 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/29 13:36:47 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/10/10 14:39:50 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,17 @@ int	handle_single_quotes(char **str, int i, char **new_line)
 int	handle_dollar(char **str, int i, char **new_line, t_data *data)
 {
 	char	*var;
-	
+
 	if (ft_isdigit((*str)[i + 1]))
-	return (i + 2);
+		return (i + 2);
 	var = check_var(*str, i, data);
 	if (!var)
-	var = ft_strdup("");
+		var = ft_strdup("");
 	*new_line = ft_strjoin(*new_line, var);
 	i++;
 	while ((*str)[i] && !ft_isspace((*str)[i]) \
 	&& !is_quote((*str)[i]) && delim((*str)[i]) == 0)
-	i++;
+		i++;
 	if ((*str)[i] == '?' && (*str)[i - 1] == '$')
 		i++;
 	return (i);
