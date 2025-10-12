@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 14:31:09 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/27 11:18:23 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/10/12 19:07:45 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pipe_or_not(t_data *data)
 {
-	if (!data->cmd_list)
+	if (!data->cmd_list || !data->cmd_list->cmd)
 	{
 		data->exit_status = 1;
 		return ;

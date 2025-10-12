@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julian <julian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 18:14:35 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/04 15:20:15 by julian           ###   ########.fr       */
+/*   Updated: 2025/10/12 19:11:09 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ int	ft_redirection(t_cmd **cmd_node)
 	{
 		if (redirection(cmd_node, i))
 			i += 2;
-		else if ((*cmd_node)->fd_in == -1 || (*cmd_node)->fd_out == -1)
-			return (1);
 		else
 			new_cmd[j++] = ft_strdup((*cmd_node)->cmd[i++]);
+		if ((*cmd_node)->fd_in == -1 || (*cmd_node)->fd_out == -1)
+			return (1);
 	}
 	new_cmd[j] = NULL;
 	free_tab((*cmd_node)->cmd);

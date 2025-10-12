@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+         #
+#    By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 11:33:48 by jowoundi          #+#    #+#              #
-#    Updated: 2025/09/29 13:38:04 by jowoundi         ###   ########.fr        #
+#    Updated: 2025/10/11 11:38:46 by jvenkata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS =	main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c f
 		builtins/ft_pwd.c \
 		builtins/ft_unset.c \
 		builtins/ft_exit.c \
+		gnl/get_next_line.c \
 		built_in.c \
 		copy_env.c \
 		pipeline.c \
@@ -51,6 +52,7 @@ SRCS =	main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c f
 		pipeornot.c \
 		free.c \
 		red_spec.c \
+		red_herdoc.c \
 		redirection.c \
 		utils.c \
 		print_utils.c \
