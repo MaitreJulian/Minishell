@@ -6,11 +6,25 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:35:14 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/27 18:15:09 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/10/12 19:55:11 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	flags(char *arg)
+{
+	int i;
+
+	i = 2;
+	while (arg[i])
+	{
+		if (arg[i] != 'n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 void	ft_echo(char **args, t_data *data)
 {
@@ -19,14 +33,16 @@ void	ft_echo(char **args, t_data *data)
 
 	backsn = true;
 	i = 1;
-	if (args[i] && strncmp(args[i], "-n", 3) == 0 && args[i][2] == '\0')
+	while (args[i] && ft_strncmp(args[i], "-n", 2) == 0)
 	{
+		if (!flags(args[i]))
+			break;
 		backsn = false;
 		i++;
 	}
 	while (args[i] != NULL)
 	{
-		write(1, args[i], strlen(args[i]));
+		write(1, args[i], ft_strlen(args[i]));
 		if (args[i + 1])
 			write(1, " ", 1);
 		i++;

@@ -6,7 +6,7 @@
 #    By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/03 11:33:48 by jowoundi          #+#    #+#              #
-#    Updated: 2025/10/11 11:38:46 by jvenkata         ###   ########.fr        #
+#    Updated: 2025/10/12 20:00:12 by jvenkata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,6 @@ SRCS =	main.c lexer.c insert_node.c cleanex.c parsing.c find_type.c expander.c f
 		builtins/ft_pwd.c \
 		builtins/ft_unset.c \
 		builtins/ft_exit.c \
-		gnl/get_next_line.c \
 		built_in.c \
 		copy_env.c \
 		pipeline.c \
