@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 18:14:35 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/10/12 19:11:09 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:43:27 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	redirection(t_cmd **cmd_node, int i)
+bool	redirection(t_cmd **cmd_node, int i, t_data *data)
 {
 	if (!ft_strcmp((*cmd_node)->cmd[i], ">"))
 		return (red_out(cmd_node, i));
@@ -21,7 +21,7 @@ bool	redirection(t_cmd **cmd_node, int i)
 	else if (!ft_strcmp((*cmd_node)->cmd[i], "<"))
 		return (red_in(cmd_node, i));
 	else if (!ft_strcmp((*cmd_node)->cmd[i], "<<"))
-		return (red_heredoc(cmd_node, i));
+		return (red_heredoc(cmd_node, i, data));
 	return (false);
 }
 
@@ -42,7 +42,7 @@ bool	ft_red(t_cmd *cmd_node)
 	return (false);
 }
 
-int	ft_redirection(t_cmd **cmd_node)
+int	ft_redirection(t_cmd **cmd_node, t_data *data)
 {
 	char	**new_cmd;
 	int		i;
@@ -57,7 +57,7 @@ int	ft_redirection(t_cmd **cmd_node)
 	new_cmd = malloc(sizeof(char *) * (len_tab((*cmd_node)->cmd) - 1));
 	while ((*cmd_node)->cmd[i])
 	{
-		if (redirection(cmd_node, i))
+		if (redirection(cmd_node, i, data))
 			i += 2;
 		else
 			new_cmd[j++] = ft_strdup((*cmd_node)->cmd[i++]);

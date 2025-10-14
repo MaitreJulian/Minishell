@@ -6,13 +6,13 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:01:33 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/17 15:06:47 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:56:03 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_cmd	*c_node(char **str)
+t_cmd	*c_node(char **str, t_data *data)
 {
 	t_cmd	*new_node;
 	int		i;
@@ -34,18 +34,18 @@ t_cmd	*c_node(char **str)
 	while (str[++i])
 		new_node->cmd[i] = ft_strdup(str[i]);
 	new_node->cmd[i] = NULL;
-	if (ft_redirection(&new_node))
+	if (ft_redirection(&new_node, data))
 		return (NULL);
 	new_node->next = NULL;
 	return (new_node);
 }
 
-void	fill_node(t_cmd **new_struct, char **str)
+void	fill_node(t_cmd **new_struct, char **str, t_data *data)
 {
 	t_cmd	*new_node;
 	t_cmd	*temp;
 
-	new_node = c_node(str);
+	new_node = c_node(str, data);
 	if (!new_node)
 		return ;
 	if (!*new_struct)
@@ -59,7 +59,7 @@ void	fill_node(t_cmd **new_struct, char **str)
 	temp->next = new_node;
 }
 
-void	process_command_block(t_cmd **f_struct, t_pars **line, int *nb_cmd)
+void	process_command_block(t_cmd **f_s, t_pars **line, int *nbc, t_data *d)
 {
 	int		count;
 	int		size;
@@ -70,9 +70,9 @@ void	process_command_block(t_cmd **f_struct, t_pars **line, int *nb_cmd)
 	if (!new_line)
 		return ;
 	size = count_args(new_line);
-	fill_node(f_struct, new_line);
+	fill_node(f_s, new_line, d);
 	free_args(new_line, size);
-	(*nb_cmd)++;
+	(*nbc)++;
 }
 
 int	size_struct(t_cmd *f_struct)
@@ -89,7 +89,7 @@ int	size_struct(t_cmd *f_struct)
 	return (1);
 }
 
-t_cmd	*fill_struct(t_pars *line)
+t_cmd	*fill_struct(t_pars *line, t_data *data)
 {
 	t_cmd	*f_struct;
 	t_pars	*runner;
@@ -105,7 +105,7 @@ t_cmd	*fill_struct(t_pars *line)
 			line = line->next;
 			continue ;
 		}
-		process_command_block(&f_struct, &line, &nb_cmd);
+		process_command_block(&f_struct, &line, &nb_cmd, data);
 		while (line && line->type != PIPE)
 			line = line->next;
 	}

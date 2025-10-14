@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/27 11:20:39 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:47:51 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_minishell(t_data *data)
 		luthor = lexing(input, data);
 		if (parsing(luthor, data) == 0)
 			continue ;
-		data->cmd_list = fill_struct(luthor);
+		data->cmd_list = fill_struct(luthor, data);
 		pipe_or_not(data);
 		if (!(input[0] == '\0'))
 			data->cmd_list = free_cmd_list(data->cmd_list);

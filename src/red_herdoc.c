@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   red_herdoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 19:11:28 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/10/12 19:13:29 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:48:39 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	parent(int fd, t_cmd **cmd_node, int pid)
 	return (true);
 }
 
-void	write_heredoc(int fd, char *delim)
+void	write_heredoc(int fd, char *delim, t_data *data)
 {
 	char	*line;
 
@@ -55,6 +55,7 @@ void	write_heredoc(int fd, char *delim)
 			free(line);
 			break ;
 		}
+		expander(&line, WORD, data);
 		write(fd, line, strlen(line));
 		write(fd, "\n", 1);
 		free(line);
@@ -62,7 +63,7 @@ void	write_heredoc(int fd, char *delim)
 	close(fd);
 }
 
-bool	red_heredoc(t_cmd **cmd_node, int i)
+bool	red_heredoc(t_cmd **cmd_node, int i, t_data *data)
 {
 	int		fd;
 	char	*delim;
@@ -84,7 +85,7 @@ bool	red_heredoc(t_cmd **cmd_node, int i)
 	}
 	else if (pid == 0)
 	{
-		write_heredoc(fd, delim);
+		write_heredoc(fd, delim, data);
 		exit(0);
 	}
 	else

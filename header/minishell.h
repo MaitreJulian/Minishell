@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/09/29 13:38:19 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:50:34 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_pars	*split_space(t_pars *line);
 void	fill_block(t_pars **data, char *str, int type);
 void	expander(char **str, int type, t_data *data);
 int		parsing(t_pars *line, t_data *data);
-t_cmd	*fill_struct(t_pars *luthor);
+t_cmd	*fill_struct(t_pars *luthor, t_data *data);
 void	syntax_error_c(int n, char c, char *str);
 char	*ft_getenv(char *src, char **env);
 int		count_until_pipe(t_pars *line);
@@ -116,12 +116,12 @@ void	setup_signals(void);
 //MAIN
 char	**copy_env_init(char **env, t_data *data);
 //t_cmd	*make_cmd_list(char *s, t_data *data);
-bool	red_heredoc(t_cmd **cmd_node, int i);
+bool	red_heredoc(t_cmd **cmd_node, int i, t_data *data);
 bool	red_out(t_cmd **cmd_node, int i);;
 bool	red_append(t_cmd **cmd_node, int i);
 bool	red_in(t_cmd **cmd_node, int i);
-bool	redirection(t_cmd **cmd_node, int i);
-int		ft_redirection(t_cmd **cmd_node);
+bool	redirection(t_cmd **cmd_node, int i, t_data *data);
+int		ft_redirection(t_cmd **cmd_node, t_data *data);
 
 //exec
 void	launch_builtin(t_data *data, t_cmd *cmd_list);
