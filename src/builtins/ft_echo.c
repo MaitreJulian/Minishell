@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 15:35:14 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/10/12 19:55:11 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:19:53 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	flags(char *arg)
 {
-	int i;
+	int	i;
 
 	i = 2;
 	while (arg[i])
@@ -36,7 +36,7 @@ void	ft_echo(char **args, t_data *data)
 	while (args[i] && ft_strncmp(args[i], "-n", 2) == 0)
 	{
 		if (!flags(args[i]))
-			break;
+			break ;
 		backsn = false;
 		i++;
 	}
