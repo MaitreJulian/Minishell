@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/10/14 15:47:51 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:29:20 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_data	*init_data(char **env)
 	if (!data)
 		return (NULL);
 	data->cmd_list = NULL;
+	data->exp = false;
 	data->exit_status = 0;
 	data->envc = copy_env_init(env, data);
 	return (data);

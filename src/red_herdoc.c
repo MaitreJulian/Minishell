@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 19:11:28 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/10/14 15:48:39 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:31:08 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,13 @@ void	write_heredoc(int fd, char *delim, t_data *data)
 			free(line);
 			break ;
 		}
-		expander(&line, WORD, data);
+		if (data->exp == false)
+			expander(&line, WORD, data);
 		write(fd, line, strlen(line));
 		write(fd, "\n", 1);
 		free(line);
 	}
+	data->exp = false;
 	close(fd);
 }
 

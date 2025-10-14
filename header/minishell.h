@@ -6,7 +6,7 @@
 /*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:42 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/10/14 15:50:34 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:28:29 by jowoundi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_data
 {
 	t_cmd			*cmd_list;
 	char			**envc;
+	bool			exp;
 	int				exit_status;
 }		t_data;
 
