@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:13:40 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/09/27 10:50:49 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/10/21 13:51:24 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**copy_env_init(char **envp, t_data *data)
 
 	count = 0;
 	i = 0;
-	while (envp[i])
+	while (envp && envp[i])
 		i++;
 	env_copy = malloc(sizeof(char *) * (i + 1));
 	if (!env_copy)

@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 10:06:22 by julian            #+#    #+#             */
-/*   Updated: 2025/09/27 10:53:55 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/10/21 13:51:10 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_spec_pwd(char **env, int c)
 	char	*str;
 
 	i = 0;
-	while (env[i] && c)
+	while (env && env[i] && c)
 	{
 		while (env[i] && strncmp(env[i], "OLDPWD", 6) != 0)
 			i++;
@@ -28,7 +28,7 @@ char	*get_spec_pwd(char **env, int c)
 			return (str);
 		}
 	}
-	while (env[i] && !c)
+	while (env && env[i] && !c)
 	{
 		while (env[i] && strncmp(env[i], "HOME", 4) != 0)
 			i++;
@@ -117,7 +117,7 @@ char	**ft_cd(t_data *data, char **new_pwd)
 		free(new_pwd[1]);
 		new_pwd[1] = get_spec_pwd(data->envc, 0);
 	}
-	if (new_pwd[1][0] == '-')
+	if (new_pwd[1] && new_pwd[1][0] && new_pwd[1][0] == '-')
 	{
 		free(new_pwd[1]);
 		new_pwd[1] = get_spec_pwd(data->envc, 1);
