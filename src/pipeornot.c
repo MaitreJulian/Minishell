@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 14:31:09 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/10/14 16:51:07 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/10/24 14:10:59 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	pipe_or_not(t_data *data)
 		data->exit_status = 1;
 		return ;
 	}
-	if(!data->cmd_list->cmd[0])
+	if (!data->cmd_list->cmd[0])
 		return ;
 	if (data->cmd_list->n_cmd == 1 && is_nofork_builtin(data->cmd_list->cmd[0]))
 	{
