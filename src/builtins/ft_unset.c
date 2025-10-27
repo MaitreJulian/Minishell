@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 21:18:00 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/10/10 14:40:09 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:42:46 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ char	**unset_env(char **envc, char *v_env_del, int len)
 	i = 0;
 	j = 0;
 	new_env = malloc(sizeof(char *) * len_env(envc));
+	if (!new_env)
+		return (envc);
 	while (envc[i])
 	{
 		if (ft_strncmp(envc[i], v_env_del, len) == 0

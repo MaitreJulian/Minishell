@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 14:13:40 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/10/24 14:11:13 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:43:04 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	**add_shlvl(char **env, t_data *data)
 
 	i = 0;
 	temp = malloc(sizeof(char *) * 2);
+	if (!temp)
+		return (env);
 	while (env[i] && ft_strncmp("SHLVL=", env[i], 6))
 		i++;
 	if (env[i] && !ft_strncmp("SHLVL=", env[i], 6))

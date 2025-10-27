@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 18:14:35 by jvenkata          #+#    #+#             */
-/*   Updated: 2025/10/14 15:43:27 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:43:26 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_redirection(t_cmd **cmd_node, t_data *data)
 	if (!ft_red(*cmd_node))
 		return (0);
 	new_cmd = malloc(sizeof(char *) * (len_tab((*cmd_node)->cmd) - 1));
-	while ((*cmd_node)->cmd[i])
+	while (new_cmd && (*cmd_node)->cmd[i])
 	{
 		if (redirection(cmd_node, i, data))
 			i += 2;
@@ -64,7 +64,8 @@ int	ft_redirection(t_cmd **cmd_node, t_data *data)
 		if ((*cmd_node)->fd_in == -1 || (*cmd_node)->fd_out == -1)
 			return (1);
 	}
-	new_cmd[j] = NULL;
+	if (new_cmd)
+		new_cmd[j] = NULL;
 	free_tab((*cmd_node)->cmd);
 	(*cmd_node)->cmd = new_cmd;
 	return (0);

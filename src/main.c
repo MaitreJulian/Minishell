@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:52:03 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/10/14 16:29:20 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:34:56 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_data	*init_data(char **env)
 
 	data = malloc(sizeof(t_data));
 	if (!data)
-		return (NULL);
+		exit (1);
 	data->cmd_list = NULL;
 	data->exp = false;
 	data->exit_status = 0;

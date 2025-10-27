@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_structure.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jowoundi <jowoundi@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 18:01:33 by jowoundi          #+#    #+#             */
-/*   Updated: 2025/10/14 16:16:00 by jowoundi         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:42:14 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,10 @@ int	size_struct(t_cmd *f_struct)
 	size_cmd = 0;
 	if (!f_struct)
 		return (0);
-	while (f_struct->cmd[size_cmd])
+	while (f_struct-> cmd && f_struct->cmd[size_cmd])
 		size_cmd++;
-	if (size_cmd == 1 && ft_strncmp(f_struct->cmd[0], " ", 1) == 0)
+	if (f_struct-> cmd
+		&& size_cmd == 1 && ft_strncmp(f_struct->cmd[0], " ", 1) == 0)
 		return (0);
 	return (1);
 }

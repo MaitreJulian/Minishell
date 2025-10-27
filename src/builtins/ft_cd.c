@@ -6,7 +6,7 @@
 /*   By: jvenkata <jvenkata@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 10:06:22 by julian            #+#    #+#             */
-/*   Updated: 2025/10/21 13:51:10 by jvenkata         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:14:49 by jvenkata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ static void	update_oldpwd(t_data *data)
 		return ;
 	}
 	old_var_env = malloc(sizeof(char *) * 2);
+	if (!old_var_env)
+		return ;
 	update_old(data, old_var_env, i);
 	free_tab(old_var_env);
 }
@@ -96,6 +98,8 @@ static void	update_pwd(t_data *data, char *new_pwd)
 		return ;
 	}
 	pwd = malloc(sizeof(char *) * 2);
+	if (!pwd)
+		return ;
 	pwd[0] = ft_strjoin("PWD=", cwd);
 	if (!pwd[0])
 		return ;
